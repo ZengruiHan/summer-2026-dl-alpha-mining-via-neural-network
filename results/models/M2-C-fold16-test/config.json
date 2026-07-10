@@ -1,0 +1,33 @@
+{
+  "model": "M2-C",
+  "model_family": "gcn_multiclass",
+  "graph_relation": "sector",
+  "seed": 1729,
+  "numeric_feature_count": 8,
+  "sector_category_count": 690,
+  "class_count": 5,
+  "optimizer": "adam",
+  "selection_metric": "validation_daily_mean_cross_entropy",
+  "max_epochs": 20,
+  "patience": 5,
+  "min_delta": 1e-06,
+  "batch_dates": 32,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.999,
+  "adam_epsilon": 1e-08,
+  "gradient_clip_norm": 5.0,
+  "candidates": [
+    {
+      "id": "h16_lr0p003_l2_1em4",
+      "hidden_dim": 16,
+      "learning_rate": 0.003,
+      "l2": 0.0001
+    },
+    {
+      "id": "h32_lr0p003_l2_1em4",
+      "hidden_dim": 32,
+      "learning_rate": 0.003,
+      "l2": 0.0001
+    }
+  ]
+}

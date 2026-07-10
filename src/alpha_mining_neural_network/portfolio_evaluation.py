@@ -1,4 +1,4 @@
-"""Evaluate M0 long-short portfolio performance and cost sensitivity."""
+"""Evaluate model long-short portfolio performance and cost sensitivity."""
 
 from __future__ import annotations
 
@@ -81,12 +81,15 @@ def strict_portfolio_return(
     missing_count = int((held & ~np.isfinite(target_return)).sum())
     if missing_count:
         return float("nan"), missing_count
-    return float(
-        np.dot(
-            weights[held].astype(np.float64),
-            target_return[held].astype(np.float64),
-        )
-    ), 0
+    return (
+        float(
+            np.dot(
+                weights[held].astype(np.float64),
+                target_return[held].astype(np.float64),
+            )
+        ),
+        0,
+    )
 
 
 def zero_contribution_portfolio_return(
@@ -105,12 +108,15 @@ def zero_contribution_portfolio_return(
     missing_count = int((held & ~np.isfinite(target_return)).sum())
     if not observed.any():
         return float("nan"), missing_count
-    return float(
-        np.dot(
-            weights[observed].astype(np.float64),
-            target_return[observed].astype(np.float64),
-        )
-    ), missing_count
+    return (
+        float(
+            np.dot(
+                weights[observed].astype(np.float64),
+                target_return[observed].astype(np.float64),
+            )
+        ),
+        missing_count,
+    )
 
 
 def performance_summary(
@@ -158,7 +164,9 @@ def performance_summary(
         "transaction_cost_bps": float(transaction_cost_bps),
         "annualization_days": annualization_days,
         "sharpe": sharpe,
-        "mean_daily_gross_return": float(gross_return[valid].mean()) if valid.any() else None,
+        "mean_daily_gross_return": (
+            float(gross_return[valid].mean()) if valid.any() else None
+        ),
         "mean_daily_gross_return_bps": (
             float(gross_return[valid].mean() * 10_000.0) if valid.any() else None
         ),
@@ -166,9 +174,7 @@ def performance_summary(
         "mean_daily_net_return_bps": (
             float(valid_net.mean() * 10_000.0) if len(valid_net) else None
         ),
-        "mean_daily_turnover": (
-            float(turnover[valid].mean()) if valid.any() else None
-        ),
+        "mean_daily_turnover": (float(turnover[valid].mean()) if valid.any() else None),
         "mean_daily_turnover_all_formation_dates": float(turnover.mean()),
         "maximum_drawdown": (
             float(np.nanmax(drawdown)) if np.isfinite(drawdown).any() else None
@@ -228,16 +234,17 @@ def evaluate_portfolio_metrics(
 
     portfolio_manifest_path = portfolio_dir / "portfolio_manifest.json"
     portfolio_manifest = load_json(portfolio_manifest_path)
-    if portfolio_manifest.get("status") != "complete" or portfolio_manifest.get("model") != "M0":
-        raise RuntimeError("Portfolio input is not a complete M0 artifact")
+    if portfolio_manifest.get("status") != "complete" or not portfolio_manifest.get(
+        "model"
+    ):
+        raise RuntimeError("Portfolio input is not a complete model artifact")
+    model_name = str(portfolio_manifest["model"])
     dates = np.load(portfolio_dir / "dates.npy", mmap_mode="r", allow_pickle=False)
     permno = np.load(portfolio_dir / "permno.npy", mmap_mode="r", allow_pickle=False)
     fold_index = np.load(
         portfolio_dir / "fold_index.npy", mmap_mode="r", allow_pickle=False
     )
-    weights = np.load(
-        portfolio_dir / "weights.npy", mmap_mode="r", allow_pickle=False
-    )
+    weights = np.load(portfolio_dir / "weights.npy", mmap_mode="r", allow_pickle=False)
     expected_node_shape = (len(dates), 500)
     if permno.shape != expected_node_shape or weights.shape != expected_node_shape:
         raise RuntimeError("Portfolio arrays do not align")
@@ -256,9 +263,7 @@ def evaluate_portfolio_metrics(
     offset = 0
     for year in range(2009, 2026):
         feature_dir = ready_dir / "_shared" / "features" / f"year={year}"
-        supervision_dir = (
-            ready_dir / "_shared" / "supervision_full" / f"year={year}"
-        )
+        supervision_dir = ready_dir / "_shared" / "supervision_full" / f"year={year}"
         year_dates = np.load(
             feature_dir / "dates.npy", mmap_mode="r", allow_pickle=False
         )
@@ -285,12 +290,8 @@ def evaluate_portfolio_metrics(
         source_records[str(year)] = {
             "dates_sha256": sha256_file(feature_dir / "dates.npy"),
             "permno_sha256": sha256_file(feature_dir / "permno.npy"),
-            "target_return_sha256": sha256_file(
-                supervision_dir / "target_return.npy"
-            ),
-            "target_date_sha256": sha256_file(
-                supervision_dir / "target_date.npy"
-            ),
+            "target_return_sha256": sha256_file(supervision_dir / "target_return.npy"),
+            "target_date_sha256": sha256_file(supervision_dir / "target_date.npy"),
         }
         offset = stop
     if offset != len(dates):
@@ -313,11 +314,15 @@ def evaluate_portfolio_metrics(
             raise RuntimeError("Existing portfolio metric output lacks manifest")
         existing = load_json(manifest_path)
         if existing.get("source_fingerprint") != source_fingerprint:
-            raise RuntimeError("Existing portfolio metrics use different inputs or assumptions")
+            raise RuntimeError(
+                "Existing portfolio metrics use different inputs or assumptions"
+            )
         for filename, record in existing["files"].items():
             path = output_dir / filename
             if not path.exists() or sha256_file(path) != record["sha256"]:
-                raise RuntimeError(f"Existing portfolio metric failed integrity: {path}")
+                raise RuntimeError(
+                    f"Existing portfolio metric failed integrity: {path}"
+                )
         return existing
 
     turnover = np.empty(len(dates), dtype=np.float64)
@@ -343,11 +348,15 @@ def evaluate_portfolio_metrics(
         gross_return[date_index] = gross
         strict_gross_return[date_index] = strict_gross
         held_missing_return_count[date_index] = missing_count
-        available_dates = target_date[date_index, np.isfinite(target_return[date_index])]
+        available_dates = target_date[
+            date_index, np.isfinite(target_return[date_index])
+        ]
         if len(available_dates):
             unique_target_dates = np.unique(available_dates)
             if len(unique_target_dates) != 1:
-                raise RuntimeError(f"Multiple target dates on signal date {dates[date_index]}")
+                raise RuntimeError(
+                    f"Multiple target dates on signal date {dates[date_index]}"
+                )
             daily_target_date[date_index] = unique_target_dates[0]
     if not np.isclose(turnover[0], 1.0, atol=2e-6):
         raise RuntimeError("First-day cash-to-portfolio turnover is not one")
@@ -397,9 +406,7 @@ def evaluate_portfolio_metrics(
                 "test_year": 2009 + fold,
                 "calendar_dates": int(mask.sum()),
                 "return_valid_dates": int(return_valid_mask[mask].sum()),
-                "held_missing_return_nodes": int(
-                    held_missing_return_count[mask].sum()
-                ),
+                "held_missing_return_nodes": int(held_missing_return_count[mask].sum()),
                 "scenarios": scenarios,
             }
         )
@@ -446,9 +453,7 @@ def evaluate_portfolio_metrics(
                     ),
                     "mean_daily_turnover": repr(scenario["mean_daily_turnover"]),
                     "maximum_drawdown": repr(scenario["maximum_drawdown"]),
-                    "cumulative_net_return": repr(
-                        scenario["cumulative_net_return"]
-                    ),
+                    "cumulative_net_return": repr(scenario["cumulative_net_return"]),
                 }
             )
 
@@ -523,7 +528,7 @@ def evaluate_portfolio_metrics(
         manifest = {
             "status": "complete",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "model": "M0",
+            "model": model_name,
             "artifact": "OOS long-short portfolio metrics",
             "source_fingerprint": source_fingerprint,
             "portfolio_input": str(portfolio_dir.resolve()),
@@ -566,9 +571,7 @@ def evaluate_portfolio_metrics(
                 "max_missing_held_nodes_on_one_date": int(
                     held_missing_return_count.max()
                 ),
-                "strict_complete_holding_dates": int(
-                    strict_return_valid_mask.sum()
-                ),
+                "strict_complete_holding_dates": int(strict_return_valid_mask.sum()),
             },
             "full_supervision_sources": source_records,
             "files": files,
@@ -589,8 +592,7 @@ def evaluate_portfolio_metrics(
             for cost in normalized_costs
         ]
         if any(
-            mean_net[index] < mean_net[index + 1]
-            for index in range(len(mean_net) - 1)
+            mean_net[index] < mean_net[index + 1] for index in range(len(mean_net) - 1)
         ):
             raise RuntimeError("Net return is not monotone in transaction cost")
         write_json(temporary / "portfolio_metrics.json", manifest)
@@ -603,7 +605,7 @@ def evaluate_portfolio_metrics(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Evaluate M0 OOS long-short portfolio metrics."
+        description="Evaluate model OOS long-short portfolio metrics."
     )
     parser.add_argument("--portfolio-dir", type=Path, default=DEFAULT_PORTFOLIO_DIR)
     parser.add_argument("--ready-dir", type=Path, default=DEFAULT_READY_DIR)

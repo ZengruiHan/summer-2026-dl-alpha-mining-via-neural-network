@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Convert M0 test probabilities into scores and long-short portfolios."""
+"""Convert model test probabilities into scores and long-short portfolios."""
 
 import sys
 from pathlib import Path
@@ -10,7 +10,7 @@ SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from alpha_mining_neural_network.portfolio_construction import main
+from alpha_mining_neural_network.portfolio_construction import main  # noqa: E402
 
 
 if __name__ == "__main__":

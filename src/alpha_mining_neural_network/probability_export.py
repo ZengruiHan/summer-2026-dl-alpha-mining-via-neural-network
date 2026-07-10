@@ -1,4 +1,4 @@
-"""Publish already-generated M0 test probabilities to a stable results path."""
+"""Publish already-generated model test probabilities to a stable path."""
 
 from __future__ import annotations
 
@@ -47,6 +47,31 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def find_source_manifest(source_dir: Path) -> tuple[Path, dict[str, Any]]:
+    """Find the single completed model-run manifest in a result directory."""
+
+    preferred = source_dir / f"{source_dir.name}_manifest.json"
+    candidates = (
+        [preferred]
+        if preferred.exists()
+        else sorted(source_dir.glob("*_manifest.json"))
+    )
+    candidates = [
+        path
+        for path in candidates
+        if path.name not in {"oos_manifest.json", "probability_manifest.json"}
+    ]
+    if len(candidates) != 1:
+        raise RuntimeError(
+            f"Expected one model-run manifest in {source_dir}, found "
+            f"{[path.name for path in candidates]}"
+        )
+    manifest = load_json(candidates[0])
+    if not manifest.get("model") or "folds" not in manifest:
+        raise RuntimeError(f"Not a model-run manifest: {candidates[0]}")
+    return candidates[0], manifest
+
+
 def hardlink_or_copy(source: Path, destination: Path) -> str:
     destination.parent.mkdir(parents=True, exist_ok=True)
     try:
@@ -87,9 +112,7 @@ def validate_probability_arrays(
         raise RuntimeError("Inference-ready probability contains NaN/Inf")
     if not np.isnan(probabilities[~inference_mask]).all():
         raise RuntimeError("Non-inference probability must be NaN")
-    if not np.allclose(
-        probabilities[inference_mask].sum(axis=1), 1.0, atol=2e-6
-    ):
+    if not np.allclose(probabilities[inference_mask].sum(axis=1), 1.0, atol=2e-6):
         raise RuntimeError("Probability vector does not sum to one")
     return {
         "date_count": len(dates),
@@ -169,14 +192,18 @@ def export_test_probabilities(
     output_dir: Path,
     overwrite: bool = False,
 ) -> dict[str, Any]:
-    source_manifest_path = source_dir / "M0_manifest.json"
-    source_manifest = load_json(source_manifest_path)
+    source_manifest_path, source_manifest = find_source_manifest(source_dir)
+    model_name = str(source_manifest["model"])
     if source_manifest.get("status") != "complete":
-        raise RuntimeError("M0 source run is not complete")
-    if source_manifest.get("completed_fold_count") != 17:
-        raise RuntimeError("M0 source does not contain all 17 folds")
-    if source_manifest.get("completed_fold_indices") != list(range(17)):
-        raise RuntimeError("M0 source fold indices are incomplete or unordered")
+        raise RuntimeError(f"{model_name} source run is not complete")
+    expected_fold_count = int(source_manifest["expected_fold_count"])
+    expected_fold_indices = list(range(expected_fold_count))
+    if source_manifest.get("completed_fold_count") != expected_fold_count:
+        raise RuntimeError(f"{model_name} source does not contain all folds")
+    if source_manifest.get("completed_fold_indices") != expected_fold_indices:
+        raise RuntimeError(
+            f"{model_name} source fold indices are incomplete or unordered"
+        )
     source_oos_dir = source_dir / "oos"
     source_oos_manifest_path = source_oos_dir / "oos_manifest.json"
     source_oos_manifest = load_json(source_oos_manifest_path)
@@ -193,18 +220,27 @@ def export_test_probabilities(
 
     fold_summaries: list[dict[str, Any]] = []
     offset = 0
-    for fold_record in source_manifest["folds"]:
+    fold_records = sorted(source_manifest["folds"], key=lambda item: item["fold_index"])
+    if [int(record["fold_index"]) for record in fold_records] != expected_fold_indices:
+        raise RuntimeError("Source fold records are incomplete or unordered")
+    test_years = [int(record["test_year"]) for record in fold_records]
+    if len(test_years) > 1 and not np.all(np.diff(test_years) == 1):
+        raise RuntimeError("Source fold test years are not consecutive")
+    for fold_record in fold_records:
         fold_index = int(fold_record["fold_index"])
         test_year = int(fold_record["test_year"])
-        if test_year != 2009 + fold_index:
-            raise RuntimeError("Unexpected M0 fold/test-year mapping")
         source_prediction_dir = (
             source_dir / fold_record["fold_name"] / "predictions" / "test"
         )
         prediction_manifest_path = source_prediction_dir / "prediction_manifest.json"
         prediction_manifest_hash = sha256_file(prediction_manifest_path)
-        if prediction_manifest_hash != fold_record["test"]["prediction_manifest_sha256"]:
-            raise RuntimeError(f"Source test manifest hash failed for fold {fold_index}")
+        if (
+            prediction_manifest_hash
+            != fold_record["test"]["prediction_manifest_sha256"]
+        ):
+            raise RuntimeError(
+                f"Source test manifest hash failed for fold {fold_index}"
+            )
         prediction_manifest = load_json(prediction_manifest_path)
         if prediction_manifest.get("stage") != "refit_train_plus_validation_checkpoint":
             raise RuntimeError("Source probabilities are not from refit checkpoint")
@@ -254,7 +290,7 @@ def export_test_probabilities(
         existing = load_json(existing_manifest_path)
         if existing.get("source_run_fingerprint") != source_manifest["run_fingerprint"]:
             raise FileExistsError(
-                f"Output belongs to another M0 run: {output_dir}; use --overwrite"
+                f"Output belongs to another model run: {output_dir}; use --overwrite"
             )
         for filename, record in existing["files"].items():
             output_path = output_dir / filename
@@ -281,7 +317,7 @@ def export_test_probabilities(
             temporary,
             expected_hashes=None,
             metadata={
-                "model": "M0",
+                "model": model_name,
                 "scope": "canonical_concatenated_non_overlapping_oos_test",
                 "source": str(source_oos_dir.resolve()),
                 "source_stage": "concatenated_fold_test_probabilities",
@@ -303,7 +339,7 @@ def export_test_probabilities(
         root_manifest = {
             "status": "complete",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "model": "M0",
+            "model": model_name,
             "artifact": "canonical concatenated test-period predicted probabilities",
             "test_inference_recomputed": False,
             "publication_policy": (
@@ -315,8 +351,8 @@ def export_test_probabilities(
             "source_oos_manifest_sha256": sha256_file(source_oos_manifest_path),
             "source_run_fingerprint": source_manifest["run_fingerprint"],
             "fold_count": len(fold_summaries),
-            "fold_indices": list(range(17)),
-            "test_years": list(range(2009, 2026)),
+            "fold_indices": expected_fold_indices,
+            "test_years": test_years,
             "date_start": oos_checks["date_start"],
             "date_end": oos_checks["date_end"],
             "date_count": oos_checks["date_count"],
@@ -350,7 +386,7 @@ def export_test_probabilities(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Publish M0 test probabilities without rerunning test inference."
+        description="Publish model test probabilities without rerunning inference."
     )
     parser.add_argument("--source-dir", type=Path, default=DEFAULT_SOURCE_DIR)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)

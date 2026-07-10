@@ -1,4 +1,4 @@
-"""Evaluate M0 OOS Rank IC, Pearson IC, and classification accuracy."""
+"""Evaluate model OOS Rank IC, Pearson IC, and classification accuracy."""
 
 from __future__ import annotations
 
@@ -55,8 +55,7 @@ def pearson_correlation(left: np.ndarray, right: np.ndarray) -> float:
     left_centered = left - left.mean()
     right_centered = right - right.mean()
     denominator = np.sqrt(
-        np.dot(left_centered, left_centered)
-        * np.dot(right_centered, right_centered)
+        np.dot(left_centered, left_centered) * np.dot(right_centered, right_centered)
     )
     if denominator == 0.0 or not np.isfinite(denominator):
         return float("nan")
@@ -78,9 +77,7 @@ def evaluate_one_day(
         raise ValueError("Daily metric arrays must align")
     if scores.ndim != 1 or len(scores) < 2:
         return float("nan"), float("nan"), float("nan")
-    rank_ic = pearson_correlation(
-        average_ranks(scores), average_ranks(target_return)
-    )
+    rank_ic = pearson_correlation(average_ranks(scores), average_ranks(target_return))
     ic = pearson_correlation(scores, target_return)
     accuracy = float(np.mean(predicted_class == target_class))
     return rank_ic, ic, accuracy
@@ -153,13 +150,12 @@ def evaluate_prediction_metrics(
         raise RuntimeError("Probability input is incomplete")
     if score_manifest.get("status") != "complete":
         raise RuntimeError("Ranking score input is incomplete")
-    if probability_manifest.get("model") != "M0" or score_manifest.get("model") != "M0":
-        raise RuntimeError("Prediction inputs are not M0 artifacts")
+    model_name = probability_manifest.get("model")
+    if not model_name or score_manifest.get("model") != model_name:
+        raise RuntimeError("Prediction inputs do not belong to the same model")
 
     dates = np.load(probability_dir / "dates.npy", mmap_mode="r", allow_pickle=False)
-    permno = np.load(
-        probability_dir / "permno.npy", mmap_mode="r", allow_pickle=False
-    )
+    permno = np.load(probability_dir / "permno.npy", mmap_mode="r", allow_pickle=False)
     probabilities = np.load(
         probability_dir / "probabilities.npy", mmap_mode="r", allow_pickle=False
     )
@@ -202,9 +198,7 @@ def evaluate_prediction_metrics(
     offset = 0
     for year in range(2009, 2026):
         feature_dir = ready_dir / "_shared" / "features" / f"year={year}"
-        supervision_dir = (
-            ready_dir / "_shared" / "supervision_full" / f"year={year}"
-        )
+        supervision_dir = ready_dir / "_shared" / "supervision_full" / f"year={year}"
         year_dates = np.load(
             feature_dir / "dates.npy", mmap_mode="r", allow_pickle=False
         )
@@ -258,16 +252,10 @@ def evaluate_prediction_metrics(
                 feature_dir / "complete_numeric_mask.npy"
             ),
             "y_sha256": sha256_file(supervision_dir / "y.npy"),
-            "label_mask_sha256": sha256_file(
-                supervision_dir / "label_mask.npy"
-            ),
+            "label_mask_sha256": sha256_file(supervision_dir / "label_mask.npy"),
             "loss_mask_sha256": sha256_file(supervision_dir / "loss_mask.npy"),
-            "target_return_sha256": sha256_file(
-                supervision_dir / "target_return.npy"
-            ),
-            "target_date_sha256": sha256_file(
-                supervision_dir / "target_date.npy"
-            ),
+            "target_return_sha256": sha256_file(supervision_dir / "target_return.npy"),
+            "target_date_sha256": sha256_file(supervision_dir / "target_date.npy"),
         }
         offset = stop
     if offset != len(dates):
@@ -416,7 +404,7 @@ def evaluate_prediction_metrics(
         manifest = {
             "status": "complete",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "model": "M0",
+            "model": str(model_name),
             "artifact": "OOS prediction metrics",
             "source_fingerprint": source_fingerprint,
             "probability_input": str(probability_dir.resolve()),
@@ -468,7 +456,7 @@ def evaluate_prediction_metrics(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Evaluate M0 OOS Rank IC, Pearson IC, and accuracy."
+        description="Evaluate model OOS Rank IC, Pearson IC, and accuracy."
     )
     parser.add_argument("--probability-dir", type=Path, default=DEFAULT_PROBABILITY_DIR)
     parser.add_argument("--score-dir", type=Path, default=DEFAULT_SCORE_DIR)

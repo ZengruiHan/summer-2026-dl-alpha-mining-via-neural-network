@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import json
 import math
 import shutil
 from datetime import datetime, timezone
@@ -76,7 +75,9 @@ def construct_daily_portfolios(
             raise RuntimeError(f"Duplicate daily PERMNO on date index {date_index}")
         leg_size = math.floor(tail_fraction * len(eligible))
         if leg_size < 1 or 2 * leg_size > len(eligible):
-            raise RuntimeError(f"Insufficient eligible assets on date index {date_index}")
+            raise RuntimeError(
+                f"Insufficient eligible assets on date index {date_index}"
+            )
 
         order_within_eligible = np.lexsort(
             (permno[date_index, eligible], scores[date_index, eligible])
@@ -145,7 +146,9 @@ def _verify_existing(
         raise RuntimeError(f"Existing output lacks manifest: {output_dir}")
     manifest = load_json(manifest_path)
     if manifest.get("input_probability_manifest_sha256") != input_manifest_hash:
-        raise RuntimeError(f"Existing output belongs to another probability input: {output_dir}")
+        raise RuntimeError(
+            f"Existing output belongs to another probability input: {output_dir}"
+        )
     for filename, record in manifest["files"].items():
         path = output_dir / filename
         if not path.exists() or sha256_file(path) != record["sha256"]:
@@ -163,8 +166,11 @@ def build_scores_and_portfolios(
 ) -> dict[str, Any]:
     input_manifest_path = input_dir / "probability_manifest.json"
     input_manifest = load_json(input_manifest_path)
-    if input_manifest.get("status") != "complete" or input_manifest.get("model") != "M0":
-        raise RuntimeError("Input probability publication is not a complete M0 artifact")
+    if input_manifest.get("status") != "complete" or not input_manifest.get("model"):
+        raise RuntimeError(
+            "Input probability publication is not a complete model artifact"
+        )
+    model_name = str(input_manifest["model"])
     if input_manifest.get("class_axis_signed_labels") != [-2, -1, 0, 1, 2]:
         raise RuntimeError("Probability class axis does not match the proposal")
     input_manifest_hash = sha256_file(input_manifest_path)
@@ -182,7 +188,9 @@ def build_scores_and_portfolios(
         )
         if existing_scores is not None or existing_portfolios is not None:
             if existing_scores is None or existing_portfolios is None:
-                raise RuntimeError("Only one of the paired score/portfolio outputs exists")
+                raise RuntimeError(
+                    "Only one of the paired score/portfolio outputs exists"
+                )
             return {"scores": existing_scores, "portfolios": existing_portfolios}
 
     probabilities = np.load(
@@ -258,7 +266,7 @@ def build_scores_and_portfolios(
         score_manifest = {
             "status": "complete",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "model": "M0",
+            "model": model_name,
             "artifact": "cross-sectional ranking scores",
             "input": str(input_dir.resolve()),
             "input_probability_manifest_sha256": input_manifest_hash,
@@ -299,7 +307,7 @@ def build_scores_and_portfolios(
         portfolio_manifest = {
             "status": "complete",
             "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "model": "M0",
+            "model": model_name,
             "artifact": "daily equal-weight dollar-neutral long-short portfolios",
             "input": str(input_dir.resolve()),
             "ranking_scores": str(score_dir.resolve()),
@@ -332,9 +340,7 @@ def build_scores_and_portfolios(
                 "date_and_permno_alignment": "passed",
             },
         }
-        write_json(
-            portfolio_temporary / "portfolio_manifest.json", portfolio_manifest
-        )
+        write_json(portfolio_temporary / "portfolio_manifest.json", portfolio_manifest)
         score_temporary.replace(score_dir)
         portfolio_temporary.replace(portfolio_dir)
     except BaseException:
@@ -348,7 +354,7 @@ def build_scores_and_portfolios(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Build M0 ranking scores and daily long-short portfolios."
+        description="Build model ranking scores and daily long-short portfolios."
     )
     parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR)
     parser.add_argument("--score-dir", type=Path, default=DEFAULT_SCORE_DIR)

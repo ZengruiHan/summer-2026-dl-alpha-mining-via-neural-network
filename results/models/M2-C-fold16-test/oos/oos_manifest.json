@@ -1,0 +1,32 @@
+{
+  "fold_count": 1,
+  "fold_indices": [
+    16
+  ],
+  "date_start": "2025-01-02",
+  "date_end": "2025-12-31",
+  "probability_shape": [
+    250,
+    500,
+    5
+  ],
+  "non_overlapping_strictly_increasing_dates": true,
+  "class_id_to_signed_label": {
+    "0": -2,
+    "1": -1,
+    "2": 0,
+    "3": 1,
+    "4": 2
+  },
+  "metrics": {
+    "daily_mean_cross_entropy": 1.5831085754685612,
+    "daily_mean_accuracy": 0.2407664728682027,
+    "daily_mean_rank_ic": 0.003466731810566553,
+    "daily_mean_pearson_ic": 0.0030018263105157923,
+    "model_ready_nodes": 124178,
+    "calendar_dates": 250,
+    "evaluated_dates": 249,
+    "rank_ic_valid_dates": 249,
+    "pearson_ic_valid_dates": 249
+  }
+}

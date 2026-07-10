@@ -1,0 +1,3036 @@
+{
+  "status": "complete",
+  "model": "M0",
+  "model_family": "multinomial_logistic",
+  "fold_index": 7,
+  "fold_name": "fold_07_train_2007_2014_val_2015_test_2016",
+  "config_fingerprint": "b0e41125c17d224905b2221804a73b2a6a6e0df63e72252a5e8369b4fc86a1ad",
+  "run_fingerprint": "4ec26dca010c51e6bbeb1680fe1b1bc31dc6d6c54fdc175d147fef4f62262398",
+  "input_fold": "/home/wangb/projects/alpha-mining-neural-network/data/ready_for_use/fold_07_train_2007_2014_val_2015_test_2016",
+  "train_years": [
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+  ],
+  "validation_year": 2015,
+  "refit_years": [
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015
+  ],
+  "test_year": 2016,
+  "feature_contract": {
+    "numeric_features": 8,
+    "numeric_feature_names": [
+      "return_t_minus_1_z",
+      "mean_return_t_minus_6_to_t_minus_2_z",
+      "mean_return_t_minus_20_to_t_minus_7_z",
+      "momentum_20_z",
+      "beta_60_z",
+      "volatility_20_z",
+      "mean_dollar_volume_20_z",
+      "mean_turnover_20_z"
+    ],
+    "sector_categories": 690,
+    "fixed_input_dimension": 698,
+    "sector_implementation": "sparse coefficient lookup exactly equivalent to one-hot",
+    "graph_used": false
+  },
+  "objective": "daily-equal mean categorical cross-entropy; node-equal within date",
+  "class_id_to_signed_label": {
+    "0": -2,
+    "1": -1,
+    "2": 0,
+    "3": 1,
+    "4": 2
+  },
+  "selection": {
+    "metric": "validation_daily_mean_cross_entropy",
+    "selected_candidate": "lr0p003_l2_1em4",
+    "selected_learning_rate": 0.003,
+    "selected_l2": 0.0001,
+    "selected_epoch": 54,
+    "candidate_records": [
+      {
+        "candidate_id": "lr0p001_l2_0",
+        "learning_rate": 0.001,
+        "l2": 0.0,
+        "seed": 71729,
+        "best_epoch": 21,
+        "best_validation_daily_mean_cross_entropy": 1.5682095080257887,
+        "epochs_run": 36,
+        "stopped_early": true,
+        "training_seconds": 6.338256235001609,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.6001235696135974,
+            "validation_daily_mean_cross_entropy": 1.5903425368654776,
+            "validation_daily_mean_accuracy": 0.24679728989485042,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.587251259211101,
+            "validation_daily_mean_cross_entropy": 1.5807318630446476,
+            "validation_daily_mean_accuracy": 0.24931866479796086,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5813024225249197,
+            "validation_daily_mean_cross_entropy": 1.575939816782674,
+            "validation_daily_mean_accuracy": 0.25111326949578777,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.578611164145131,
+            "validation_daily_mean_cross_entropy": 1.5734246028846954,
+            "validation_daily_mean_accuracy": 0.2516706520932532,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5772964115232837,
+            "validation_daily_mean_cross_entropy": 1.5719178891276933,
+            "validation_daily_mean_accuracy": 0.2526146480585955,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5765149878792306,
+            "validation_daily_mean_cross_entropy": 1.5709151371541725,
+            "validation_daily_mean_accuracy": 0.25374968635943573,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5760098662591964,
+            "validation_daily_mean_cross_entropy": 1.5702475945788075,
+            "validation_daily_mean_accuracy": 0.2543729174529074,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.57562462536186,
+            "validation_daily_mean_cross_entropy": 1.5697250223729715,
+            "validation_daily_mean_accuracy": 0.2545890523456102,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.575351799475987,
+            "validation_daily_mean_cross_entropy": 1.569385443550657,
+            "validation_daily_mean_accuracy": 0.2549262430311711,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5751268429005258,
+            "validation_daily_mean_cross_entropy": 1.5690872954182415,
+            "validation_daily_mean_accuracy": 0.2553077695609671,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.574960163441453,
+            "validation_daily_mean_cross_entropy": 1.568893271613406,
+            "validation_daily_mean_accuracy": 0.2544115578006851,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.574793425650959,
+            "validation_daily_mean_cross_entropy": 1.5686863219120588,
+            "validation_daily_mean_accuracy": 0.2548775664213261,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.5746858587208163,
+            "validation_daily_mean_cross_entropy": 1.5686187079228253,
+            "validation_daily_mean_accuracy": 0.25510923597048224,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5745711058926002,
+            "validation_daily_mean_cross_entropy": 1.5685013755859132,
+            "validation_daily_mean_accuracy": 0.25510170377335195,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5744878846617167,
+            "validation_daily_mean_cross_entropy": 1.5683730004793144,
+            "validation_daily_mean_accuracy": 0.25455642981136045,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.574435068373057,
+            "validation_daily_mean_cross_entropy": 1.5683925868980437,
+            "validation_daily_mean_accuracy": 0.25379008362659516,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5743494078820461,
+            "validation_daily_mean_cross_entropy": 1.5683297047102118,
+            "validation_daily_mean_accuracy": 0.2545231634897758,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5743237164147268,
+            "validation_daily_mean_cross_entropy": 1.5682638408653289,
+            "validation_daily_mean_accuracy": 0.25478874254775963,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5742666095983786,
+            "validation_daily_mean_cross_entropy": 1.56826697830185,
+            "validation_daily_mean_accuracy": 0.2547063937357421,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.574223973297445,
+            "validation_daily_mean_cross_entropy": 1.5682198830334788,
+            "validation_daily_mean_accuracy": 0.2549556117245361,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.57420210310078,
+            "validation_daily_mean_cross_entropy": 1.5682095080257887,
+            "validation_daily_mean_accuracy": 0.2547173685959859,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5741560351949275,
+            "validation_daily_mean_cross_entropy": 1.5682588920175318,
+            "validation_daily_mean_accuracy": 0.2542929083406752,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.5741269662495105,
+            "validation_daily_mean_cross_entropy": 1.568219570524664,
+            "validation_daily_mean_accuracy": 0.25426245167240114,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.5741099866539225,
+            "validation_daily_mean_cross_entropy": 1.568238468284151,
+            "validation_daily_mean_accuracy": 0.25449320185277763,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.5740759235913637,
+            "validation_daily_mean_cross_entropy": 1.5682615711394534,
+            "validation_daily_mean_accuracy": 0.2544532163319451,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.5740988450564382,
+            "validation_daily_mean_cross_entropy": 1.5682483004383831,
+            "validation_daily_mean_accuracy": 0.2540303145502353,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.5740588174432413,
+            "validation_daily_mean_cross_entropy": 1.568223568072832,
+            "validation_daily_mean_accuracy": 0.2537314286851199,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.5740544101342715,
+            "validation_daily_mean_cross_entropy": 1.5682629921521798,
+            "validation_daily_mean_accuracy": 0.25480530275980673,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5740462055386326,
+            "validation_daily_mean_cross_entropy": 1.5682679756704079,
+            "validation_daily_mean_accuracy": 0.2547089018324378,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5740070144631528,
+            "validation_daily_mean_cross_entropy": 1.5682355478940257,
+            "validation_daily_mean_accuracy": 0.25397254025046506,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.5739946646057903,
+            "validation_daily_mean_cross_entropy": 1.5682342503650255,
+            "validation_daily_mean_accuracy": 0.2549318396238405,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5740143458048503,
+            "validation_daily_mean_cross_entropy": 1.5682674589385075,
+            "validation_daily_mean_accuracy": 0.254293920235345,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 33,
+            "mean_batch_training_objective": 1.5740112032513682,
+            "validation_daily_mean_cross_entropy": 1.5682954313270598,
+            "validation_daily_mean_accuracy": 0.2546751462650333,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 34,
+            "mean_batch_training_objective": 1.5739851009768748,
+            "validation_daily_mean_cross_entropy": 1.5682488912605195,
+            "validation_daily_mean_accuracy": 0.25420493840607283,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 35,
+            "mean_batch_training_objective": 1.5739725527926813,
+            "validation_daily_mean_cross_entropy": 1.5683469002940265,
+            "validation_daily_mean_accuracy": 0.25388603804548493,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 36,
+            "mean_batch_training_objective": 1.5739544436402186,
+            "validation_daily_mean_cross_entropy": 1.5683808355217437,
+            "validation_daily_mean_accuracy": 0.25406958117033257,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p001_l2_1em4",
+        "learning_rate": 0.001,
+        "l2": 0.0001,
+        "seed": 71729,
+        "best_epoch": 45,
+        "best_validation_daily_mean_cross_entropy": 1.5682625224390827,
+        "epochs_run": 60,
+        "stopped_early": true,
+        "training_seconds": 10.163468904007459,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.600135158158015,
+            "validation_daily_mean_cross_entropy": 1.590352157672563,
+            "validation_daily_mean_accuracy": 0.24683730980438903,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5873209238093038,
+            "validation_daily_mean_cross_entropy": 1.5807660566383148,
+            "validation_daily_mean_accuracy": 0.24927853461257002,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5814540833206359,
+            "validation_daily_mean_cross_entropy": 1.576001493579363,
+            "validation_daily_mean_accuracy": 0.25108191353059345,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.5788482801743486,
+            "validation_daily_mean_cross_entropy": 1.5735136161287466,
+            "validation_daily_mean_accuracy": 0.2515114977633809,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5776186197786444,
+            "validation_daily_mean_cross_entropy": 1.5720338664681788,
+            "validation_daily_mean_accuracy": 0.25266275742142447,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5769223832562265,
+            "validation_daily_mean_cross_entropy": 1.5710567905608401,
+            "validation_daily_mean_accuracy": 0.2537503797652791,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5765007253532912,
+            "validation_daily_mean_cross_entropy": 1.5704124634009433,
+            "validation_daily_mean_accuracy": 0.25442978883675554,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.5761963114009114,
+            "validation_daily_mean_cross_entropy": 1.5699100632116614,
+            "validation_daily_mean_accuracy": 0.25462842727005147,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.5760000686999525,
+            "validation_daily_mean_cross_entropy": 1.5695869941635436,
+            "validation_daily_mean_accuracy": 0.2548060157331505,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5758469815986402,
+            "validation_daily_mean_cross_entropy": 1.5693026876069636,
+            "validation_daily_mean_accuracy": 0.2552363001636413,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.57574701118699,
+            "validation_daily_mean_cross_entropy": 1.5691172805915317,
+            "validation_daily_mean_accuracy": 0.25474025680636897,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5756416189330407,
+            "validation_daily_mean_cross_entropy": 1.5689173105703407,
+            "validation_daily_mean_accuracy": 0.2547732272899083,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.575590075016614,
+            "validation_daily_mean_cross_entropy": 1.5688523994498993,
+            "validation_daily_mean_accuracy": 0.2552456068580905,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5755268659575334,
+            "validation_daily_mean_cross_entropy": 1.568735573871202,
+            "validation_daily_mean_accuracy": 0.2552771442957152,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5754902937273927,
+            "validation_daily_mean_cross_entropy": 1.5686060285188288,
+            "validation_daily_mean_accuracy": 0.25516314555595637,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5754796054552038,
+            "validation_daily_mean_cross_entropy": 1.5686192360532236,
+            "validation_daily_mean_accuracy": 0.25459847951578796,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5754324610606159,
+            "validation_daily_mean_cross_entropy": 1.568553689941467,
+            "validation_daily_mean_accuracy": 0.2545950239784466,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5754415558117632,
+            "validation_daily_mean_cross_entropy": 1.5684818642072944,
+            "validation_daily_mean_accuracy": 0.25499578657444705,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5754157887087141,
+            "validation_daily_mean_cross_entropy": 1.5684750526549807,
+            "validation_daily_mean_accuracy": 0.25463464812125297,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.5754015808172979,
+            "validation_daily_mean_cross_entropy": 1.5684197224468823,
+            "validation_daily_mean_accuracy": 0.2553484028429566,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.5754053538058095,
+            "validation_daily_mean_cross_entropy": 1.5683985478374587,
+            "validation_daily_mean_accuracy": 0.2549085043548629,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5753828709643805,
+            "validation_daily_mean_cross_entropy": 1.568437300355311,
+            "validation_daily_mean_accuracy": 0.25424617665923965,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.57537483097743,
+            "validation_daily_mean_cross_entropy": 1.5683880379475446,
+            "validation_daily_mean_accuracy": 0.2548214555396678,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.5753769904825505,
+            "validation_daily_mean_cross_entropy": 1.5683947882329325,
+            "validation_daily_mean_accuracy": 0.25483722745417403,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.5753606259677875,
+            "validation_daily_mean_cross_entropy": 1.5684046536327834,
+            "validation_daily_mean_accuracy": 0.2549413186234916,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.575399364013667,
+            "validation_daily_mean_cross_entropy": 1.56837855629712,
+            "validation_daily_mean_accuracy": 0.25436670064496314,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.575373989078339,
+            "validation_daily_mean_cross_entropy": 1.5683404458946442,
+            "validation_daily_mean_accuracy": 0.2541072514480144,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.575382886791348,
+            "validation_daily_mean_cross_entropy": 1.5683689611366545,
+            "validation_daily_mean_accuracy": 0.25478956367709477,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5753867547394327,
+            "validation_daily_mean_cross_entropy": 1.5683619976043701,
+            "validation_daily_mean_accuracy": 0.2549160963396682,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5753586811046962,
+            "validation_daily_mean_cross_entropy": 1.5683138930940057,
+            "validation_daily_mean_accuracy": 0.25468406428016116,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.5753565504089255,
+            "validation_daily_mean_cross_entropy": 1.568299919485571,
+            "validation_daily_mean_accuracy": 0.25514889507875066,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5753857895145953,
+            "validation_daily_mean_cross_entropy": 1.568318647692403,
+            "validation_daily_mean_accuracy": 0.2546307895233726,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 33,
+            "mean_batch_training_objective": 1.57539150586088,
+            "validation_daily_mean_cross_entropy": 1.5683360878689832,
+            "validation_daily_mean_accuracy": 0.254859038842151,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 34,
+            "mean_batch_training_objective": 1.5753734132637385,
+            "validation_daily_mean_cross_entropy": 1.5682774649198312,
+            "validation_daily_mean_accuracy": 0.25458016381940785,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 35,
+            "mean_batch_training_objective": 1.5753683789221253,
+            "validation_daily_mean_cross_entropy": 1.5683628325443344,
+            "validation_daily_mean_accuracy": 0.25427048904843125,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 36,
+            "mean_batch_training_objective": 1.5753572008757821,
+            "validation_daily_mean_cross_entropy": 1.5683793147721614,
+            "validation_daily_mean_accuracy": 0.2541088602828811,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 37,
+            "mean_batch_training_objective": 1.5753661921587854,
+            "validation_daily_mean_cross_entropy": 1.5683627494302879,
+            "validation_daily_mean_accuracy": 0.25477432266734407,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 38,
+            "mean_batch_training_objective": 1.5753540195040363,
+            "validation_daily_mean_cross_entropy": 1.568319276509532,
+            "validation_daily_mean_accuracy": 0.25495017405482456,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 39,
+            "mean_batch_training_objective": 1.5753808195300556,
+            "validation_daily_mean_cross_entropy": 1.5683402863156748,
+            "validation_daily_mean_accuracy": 0.25421112713861693,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 40,
+            "mean_batch_training_objective": 1.5753463448896377,
+            "validation_daily_mean_cross_entropy": 1.5683210546751896,
+            "validation_daily_mean_accuracy": 0.2547097689517909,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 41,
+            "mean_batch_training_objective": 1.5753584619656642,
+            "validation_daily_mean_cross_entropy": 1.5683129337204404,
+            "validation_daily_mean_accuracy": 0.2545804650111924,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 42,
+            "mean_batch_training_objective": 1.5753624314044996,
+            "validation_daily_mean_cross_entropy": 1.5682917937814478,
+            "validation_daily_mean_accuracy": 0.25511681658282703,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 43,
+            "mean_batch_training_objective": 1.575373756311784,
+            "validation_daily_mean_cross_entropy": 1.5682932575385409,
+            "validation_daily_mean_accuracy": 0.25489984456980347,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 44,
+            "mean_batch_training_objective": 1.5753630928356968,
+            "validation_daily_mean_cross_entropy": 1.5683503003709345,
+            "validation_daily_mean_accuracy": 0.25363942355429786,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 45,
+            "mean_batch_training_objective": 1.5753565245182786,
+            "validation_daily_mean_cross_entropy": 1.5682625224390827,
+            "validation_daily_mean_accuracy": 0.25437091680375745,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 46,
+            "mean_batch_training_objective": 1.5753499023455502,
+            "validation_daily_mean_cross_entropy": 1.5683654385258952,
+            "validation_daily_mean_accuracy": 0.25435681822274564,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 47,
+            "mean_batch_training_objective": 1.575347838472242,
+            "validation_daily_mean_cross_entropy": 1.5683002951610612,
+            "validation_daily_mean_accuracy": 0.25453253261533676,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 48,
+            "mean_batch_training_objective": 1.5753430863838085,
+            "validation_daily_mean_cross_entropy": 1.568355248268857,
+            "validation_daily_mean_accuracy": 0.25476553599589147,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 49,
+            "mean_batch_training_objective": 1.5753375664784905,
+            "validation_daily_mean_cross_entropy": 1.5683532041382504,
+            "validation_daily_mean_accuracy": 0.254693950292136,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 50,
+            "mean_batch_training_objective": 1.5753446548469254,
+            "validation_daily_mean_cross_entropy": 1.5683188609392995,
+            "validation_daily_mean_accuracy": 0.25430039646879354,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 51,
+            "mean_batch_training_objective": 1.575349249054079,
+            "validation_daily_mean_cross_entropy": 1.5683573755135098,
+            "validation_daily_mean_accuracy": 0.2545247443152916,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 52,
+            "mean_batch_training_objective": 1.5753788164102311,
+            "validation_daily_mean_cross_entropy": 1.5683528802309379,
+            "validation_daily_mean_accuracy": 0.2545666375341135,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 53,
+            "mean_batch_training_objective": 1.5754050682786322,
+            "validation_daily_mean_cross_entropy": 1.5683109375585123,
+            "validation_daily_mean_accuracy": 0.2541016817578272,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 54,
+            "mean_batch_training_objective": 1.57535266659062,
+            "validation_daily_mean_cross_entropy": 1.5683188253189937,
+            "validation_daily_mean_accuracy": 0.2547729770745668,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 55,
+            "mean_batch_training_objective": 1.5754006310737734,
+            "validation_daily_mean_cross_entropy": 1.5683134428533425,
+            "validation_daily_mean_accuracy": 0.2544904103406226,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 56,
+            "mean_batch_training_objective": 1.575345335251528,
+            "validation_daily_mean_cross_entropy": 1.5683548455219345,
+            "validation_daily_mean_accuracy": 0.2538704924610819,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 57,
+            "mean_batch_training_objective": 1.5753749892749773,
+            "validation_daily_mean_cross_entropy": 1.5683064460754395,
+            "validation_daily_mean_accuracy": 0.2543012852416054,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 58,
+            "mean_batch_training_objective": 1.5753617197284282,
+            "validation_daily_mean_cross_entropy": 1.568333054918692,
+            "validation_daily_mean_accuracy": 0.25471404491346183,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 59,
+            "mean_batch_training_objective": 1.575358084146999,
+            "validation_daily_mean_cross_entropy": 1.5683140336754788,
+            "validation_daily_mean_accuracy": 0.25457348619896986,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 60,
+            "mean_batch_training_objective": 1.5753672737521434,
+            "validation_daily_mean_cross_entropy": 1.5683215243882866,
+            "validation_daily_mean_accuracy": 0.254805869161169,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p001_l2_1em3",
+        "learning_rate": 0.001,
+        "l2": 0.001,
+        "seed": 71729,
+        "best_epoch": 45,
+        "best_validation_daily_mean_cross_entropy": 1.5699273305110248,
+        "epochs_run": 60,
+        "stopped_early": true,
+        "training_seconds": 10.599388297996484,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.600226368426998,
+            "validation_daily_mean_cross_entropy": 1.5904394122233905,
+            "validation_daily_mean_accuracy": 0.24676412107676787,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5878066722784792,
+            "validation_daily_mean_cross_entropy": 1.58105962304955,
+            "validation_daily_mean_accuracy": 0.24880653500236397,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5823519805873505,
+            "validation_daily_mean_cross_entropy": 1.5764962092813743,
+            "validation_daily_mean_accuracy": 0.2510890874293587,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.5800492664543895,
+            "validation_daily_mean_cross_entropy": 1.5741886133216767,
+            "validation_daily_mean_accuracy": 0.25180109488920055,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5790481023033403,
+            "validation_daily_mean_cross_entropy": 1.5728763812091722,
+            "validation_daily_mean_accuracy": 0.25209866269311604,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5785431766841347,
+            "validation_daily_mean_cross_entropy": 1.5720526711399336,
+            "validation_daily_mean_accuracy": 0.2524648117422859,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.578280668335001,
+            "validation_daily_mean_cross_entropy": 1.57154048818991,
+            "validation_daily_mean_accuracy": 0.2532103885622445,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.5781099491222426,
+            "validation_daily_mean_cross_entropy": 1.5711488937476716,
+            "validation_daily_mean_accuracy": 0.2538014716285519,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.57802102862468,
+            "validation_daily_mean_cross_entropy": 1.5709169191193295,
+            "validation_daily_mean_accuracy": 0.25345640068330166,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.577954134908471,
+            "validation_daily_mean_cross_entropy": 1.570707244227132,
+            "validation_daily_mean_accuracy": 0.25438867515906133,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5779214342820722,
+            "validation_daily_mean_cross_entropy": 1.570578003784575,
+            "validation_daily_mean_accuracy": 0.2541913303862808,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5778689878253398,
+            "validation_daily_mean_cross_entropy": 1.5704266141610317,
+            "validation_daily_mean_accuracy": 0.25401638884243316,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.577857668631123,
+            "validation_daily_mean_cross_entropy": 1.570391971276576,
+            "validation_daily_mean_accuracy": 0.2539994384388343,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5778268032973517,
+            "validation_daily_mean_cross_entropy": 1.5703026702204548,
+            "validation_daily_mean_accuracy": 0.2539597132189169,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5778148664030576,
+            "validation_daily_mean_cross_entropy": 1.5701981307975799,
+            "validation_daily_mean_accuracy": 0.2541048652216644,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.577823379261483,
+            "validation_daily_mean_cross_entropy": 1.5702226822119785,
+            "validation_daily_mean_accuracy": 0.2538484184425,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5777913645565715,
+            "validation_daily_mean_cross_entropy": 1.5701710655394778,
+            "validation_daily_mean_accuracy": 0.25386061072790783,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.577812422623104,
+            "validation_daily_mean_cross_entropy": 1.5701088582377034,
+            "validation_daily_mean_accuracy": 0.2540556989885635,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.577795891129491,
+            "validation_daily_mean_cross_entropy": 1.570105281009142,
+            "validation_daily_mean_accuracy": 0.25414307702020894,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.577789204673985,
+            "validation_daily_mean_cross_entropy": 1.5700590525015417,
+            "validation_daily_mean_accuracy": 0.2547991412014311,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.577798459762847,
+            "validation_daily_mean_cross_entropy": 1.5700419438312727,
+            "validation_daily_mean_accuracy": 0.25404918086089007,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5777809916475312,
+            "validation_daily_mean_cross_entropy": 1.5700849921579856,
+            "validation_daily_mean_accuracy": 0.25377319827835676,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.5777764260129317,
+            "validation_daily_mean_cross_entropy": 1.570040345666893,
+            "validation_daily_mean_accuracy": 0.2541919862862591,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.577781598236628,
+            "validation_daily_mean_cross_entropy": 1.570050508852499,
+            "validation_daily_mean_accuracy": 0.25421393505780815,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.577767863724283,
+            "validation_daily_mean_cross_entropy": 1.570057768270789,
+            "validation_daily_mean_accuracy": 0.25408653766176625,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.5778086396854314,
+            "validation_daily_mean_cross_entropy": 1.5700340536961042,
+            "validation_daily_mean_accuracy": 0.25356714274635783,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.5777850246419376,
+            "validation_daily_mean_cross_entropy": 1.5699957732660361,
+            "validation_daily_mean_accuracy": 0.25405490604722897,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.5777952961892674,
+            "validation_daily_mean_cross_entropy": 1.570029345641573,
+            "validation_daily_mean_accuracy": 0.2540316279902349,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5778004801954966,
+            "validation_daily_mean_cross_entropy": 1.5700203379786821,
+            "validation_daily_mean_accuracy": 0.2542771369116877,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5777732553342299,
+            "validation_daily_mean_cross_entropy": 1.5699712579468807,
+            "validation_daily_mean_accuracy": 0.25406174895589895,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.5777719938701735,
+            "validation_daily_mean_cross_entropy": 1.5699600546483499,
+            "validation_daily_mean_accuracy": 0.25475006582992094,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5778019422103207,
+            "validation_daily_mean_cross_entropy": 1.5699764062683896,
+            "validation_daily_mean_accuracy": 0.25447700663221484,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 33,
+            "mean_batch_training_objective": 1.5778082629644745,
+            "validation_daily_mean_cross_entropy": 1.5700003701852137,
+            "validation_daily_mean_accuracy": 0.25358813783021533,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 34,
+            "mean_batch_training_objective": 1.5777906955616186,
+            "validation_daily_mean_cross_entropy": 1.5699411345668048,
+            "validation_daily_mean_accuracy": 0.25447088921552297,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 35,
+            "mean_batch_training_objective": 1.5777865013611352,
+            "validation_daily_mean_cross_entropy": 1.5700278828343548,
+            "validation_daily_mean_accuracy": 0.25455163610211806,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 36,
+            "mean_batch_training_objective": 1.5777754550592493,
+            "validation_daily_mean_cross_entropy": 1.5700355060546995,
+            "validation_daily_mean_accuracy": 0.2540856928072917,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 37,
+            "mean_batch_training_objective": 1.5777847827463323,
+            "validation_daily_mean_cross_entropy": 1.5700210408860469,
+            "validation_daily_mean_accuracy": 0.25378274258829403,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 38,
+            "mean_batch_training_objective": 1.577773191427628,
+            "validation_daily_mean_cross_entropy": 1.569981991057377,
+            "validation_daily_mean_accuracy": 0.25392910759741977,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 39,
+            "mean_batch_training_objective": 1.577800040910449,
+            "validation_daily_mean_cross_entropy": 1.5700013461815883,
+            "validation_daily_mean_accuracy": 0.2536700439728079,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 40,
+            "mean_batch_training_objective": 1.57776638646204,
+            "validation_daily_mean_cross_entropy": 1.5699835493270144,
+            "validation_daily_mean_accuracy": 0.2543423353900994,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 41,
+            "mean_batch_training_objective": 1.577778436441121,
+            "validation_daily_mean_cross_entropy": 1.5699791537812982,
+            "validation_daily_mean_accuracy": 0.25377618403729607,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 42,
+            "mean_batch_training_objective": 1.577782735038739,
+            "validation_daily_mean_cross_entropy": 1.5699583572220517,
+            "validation_daily_mean_accuracy": 0.2542698264635308,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 43,
+            "mean_batch_training_objective": 1.5777940379374071,
+            "validation_daily_mean_cross_entropy": 1.5699609152349343,
+            "validation_daily_mean_accuracy": 0.2544280507664574,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 44,
+            "mean_batch_training_objective": 1.5777838123900583,
+            "validation_daily_mean_cross_entropy": 1.5700072762500716,
+            "validation_daily_mean_accuracy": 0.25287850723700256,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 45,
+            "mean_batch_training_objective": 1.5777775446961781,
+            "validation_daily_mean_cross_entropy": 1.5699273305110248,
+            "validation_daily_mean_accuracy": 0.2535576075470013,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 46,
+            "mean_batch_training_objective": 1.5777710853519578,
+            "validation_daily_mean_cross_entropy": 1.5700351959205718,
+            "validation_daily_mean_accuracy": 0.25389286717115134,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 47,
+            "mean_batch_training_objective": 1.5777692335315205,
+            "validation_daily_mean_cross_entropy": 1.5699676156518945,
+            "validation_daily_mean_accuracy": 0.2542790207750734,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 48,
+            "mean_batch_training_objective": 1.5777647744519046,
+            "validation_daily_mean_cross_entropy": 1.5700194788169102,
+            "validation_daily_mean_accuracy": 0.25391879495110875,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 49,
+            "mean_batch_training_objective": 1.5777593309128985,
+            "validation_daily_mean_cross_entropy": 1.5700220567771639,
+            "validation_daily_mean_accuracy": 0.254142547347532,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 50,
+            "mean_batch_training_objective": 1.5777666311102965,
+            "validation_daily_mean_cross_entropy": 1.5699850211580435,
+            "validation_daily_mean_accuracy": 0.25395063973702786,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 51,
+            "mean_batch_training_objective": 1.5777711573428799,
+            "validation_daily_mean_cross_entropy": 1.5700233348337302,
+            "validation_daily_mean_accuracy": 0.25333746642726557,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 52,
+            "mean_batch_training_objective": 1.577801256593104,
+            "validation_daily_mean_cross_entropy": 1.5700138688562402,
+            "validation_daily_mean_accuracy": 0.25391230267892134,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 53,
+            "mean_batch_training_objective": 1.5778272798102826,
+            "validation_daily_mean_cross_entropy": 1.5699737038745347,
+            "validation_daily_mean_accuracy": 0.2534715412495375,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 54,
+            "mean_batch_training_objective": 1.5777748582592903,
+            "validation_daily_mean_cross_entropy": 1.5699858057546425,
+            "validation_daily_mean_accuracy": 0.2538234680800489,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 55,
+            "mean_batch_training_objective": 1.5778227809344836,
+            "validation_daily_mean_cross_entropy": 1.5699857938812074,
+            "validation_daily_mean_accuracy": 0.2535413777708925,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 56,
+            "mean_batch_training_objective": 1.5777678636483037,
+            "validation_daily_mean_cross_entropy": 1.5700228252258908,
+            "validation_daily_mean_accuracy": 0.2538776893677375,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 57,
+            "mean_batch_training_objective": 1.5777981661071363,
+            "validation_daily_mean_cross_entropy": 1.5699725193806378,
+            "validation_daily_mean_accuracy": 0.2541190608440134,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 58,
+            "mean_batch_training_objective": 1.5777843985007993,
+            "validation_daily_mean_cross_entropy": 1.5700024798571826,
+            "validation_daily_mean_accuracy": 0.25338824892979694,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 59,
+            "mean_batch_training_objective": 1.5777809339442541,
+            "validation_daily_mean_cross_entropy": 1.5699808702050928,
+            "validation_daily_mean_accuracy": 0.2539522598693532,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 60,
+            "mean_batch_training_objective": 1.5777905382668265,
+            "validation_daily_mean_cross_entropy": 1.5699958991244494,
+            "validation_daily_mean_accuracy": 0.25427862373895443,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p003_l2_0",
+        "learning_rate": 0.003,
+        "l2": 0.0,
+        "seed": 71729,
+        "best_epoch": 6,
+        "best_validation_daily_mean_cross_entropy": 1.568231036938519,
+        "epochs_run": 21,
+        "stopped_early": true,
+        "training_seconds": 3.672964163008146,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.589553841476232,
+            "validation_daily_mean_cross_entropy": 1.5749975480881344,
+            "validation_daily_mean_accuracy": 0.2502367774442996,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5773491725599476,
+            "validation_daily_mean_cross_entropy": 1.5705281339318629,
+            "validation_daily_mean_accuracy": 0.2531237746124329,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.575756743365239,
+            "validation_daily_mean_cross_entropy": 1.5692387216119652,
+            "validation_daily_mean_accuracy": 0.2535792591239898,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.575069192861717,
+            "validation_daily_mean_cross_entropy": 1.5684949302103415,
+            "validation_daily_mean_accuracy": 0.25454149119268504,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5747252395362683,
+            "validation_daily_mean_cross_entropy": 1.5683620697948562,
+            "validation_daily_mean_accuracy": 0.2554694001035412,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5745419205804398,
+            "validation_daily_mean_cross_entropy": 1.568231036938519,
+            "validation_daily_mean_accuracy": 0.255160101779448,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.574412663185472,
+            "validation_daily_mean_cross_entropy": 1.5682580057843274,
+            "validation_daily_mean_accuracy": 0.2539017193287044,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.574303206613392,
+            "validation_daily_mean_cross_entropy": 1.5682873963359818,
+            "validation_daily_mean_accuracy": 0.2543738472049525,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.574233208316153,
+            "validation_daily_mean_cross_entropy": 1.5683949302392177,
+            "validation_daily_mean_accuracy": 0.25366903265820356,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5742120907428663,
+            "validation_daily_mean_cross_entropy": 1.5682651051487106,
+            "validation_daily_mean_accuracy": 0.25501171090519403,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5742479540848104,
+            "validation_daily_mean_cross_entropy": 1.568380264172041,
+            "validation_daily_mean_accuracy": 0.25412908444147164,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5741494781510248,
+            "validation_daily_mean_cross_entropy": 1.5684430656205135,
+            "validation_daily_mean_accuracy": 0.2532682203828298,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.5741228559274194,
+            "validation_daily_mean_cross_entropy": 1.5685333189261388,
+            "validation_daily_mean_accuracy": 0.2539582049996068,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5741246964169922,
+            "validation_daily_mean_cross_entropy": 1.5684978434764056,
+            "validation_daily_mean_accuracy": 0.2534704076561205,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5740893938857645,
+            "validation_daily_mean_cross_entropy": 1.5684745102764601,
+            "validation_daily_mean_accuracy": 0.2541581240038216,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5741160256437443,
+            "validation_daily_mean_cross_entropy": 1.5685111797188382,
+            "validation_daily_mean_accuracy": 0.2528912691780726,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5740568042097551,
+            "validation_daily_mean_cross_entropy": 1.568518091482945,
+            "validation_daily_mean_accuracy": 0.25394069711055967,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5741325209404897,
+            "validation_daily_mean_cross_entropy": 1.5686640554215328,
+            "validation_daily_mean_accuracy": 0.2530656565818766,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5740294177557068,
+            "validation_daily_mean_cross_entropy": 1.5685622806093131,
+            "validation_daily_mean_accuracy": 0.2543814263580143,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.574076836700174,
+            "validation_daily_mean_cross_entropy": 1.5684931401712485,
+            "validation_daily_mean_accuracy": 0.2532150091863845,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.5741060168009993,
+            "validation_daily_mean_cross_entropy": 1.5685925322224894,
+            "validation_daily_mean_accuracy": 0.253550838173948,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p003_l2_1em4",
+        "learning_rate": 0.003,
+        "l2": 0.0001,
+        "seed": 71729,
+        "best_epoch": 54,
+        "best_validation_daily_mean_cross_entropy": 1.568170443474059,
+        "epochs_run": 69,
+        "stopped_early": true,
+        "training_seconds": 12.331339085008949,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.589631165196187,
+            "validation_daily_mean_cross_entropy": 1.575041532991417,
+            "validation_daily_mean_accuracy": 0.2505085775752785,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5776748345943692,
+            "validation_daily_mean_cross_entropy": 1.570646591395496,
+            "validation_daily_mean_accuracy": 0.25342052693866,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5763375458024236,
+            "validation_daily_mean_cross_entropy": 1.5694263085901026,
+            "validation_daily_mean_accuracy": 0.2538506253482277,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.57587215790173,
+            "validation_daily_mean_cross_entropy": 1.5687131235798992,
+            "validation_daily_mean_accuracy": 0.25418090082732586,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5756971868489664,
+            "validation_daily_mean_cross_entropy": 1.5685827204905658,
+            "validation_daily_mean_accuracy": 0.25514341785918637,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5756408986023154,
+            "validation_daily_mean_cross_entropy": 1.5684340209125047,
+            "validation_daily_mean_accuracy": 0.2551755347430268,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5756039166858167,
+            "validation_daily_mean_cross_entropy": 1.568429488584815,
+            "validation_daily_mean_accuracy": 0.2541426972916217,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.5755628903062562,
+            "validation_daily_mean_cross_entropy": 1.568428735334085,
+            "validation_daily_mean_accuracy": 0.25450178765357506,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.5755425309589355,
+            "validation_daily_mean_cross_entropy": 1.5684934555296879,
+            "validation_daily_mean_accuracy": 0.2539319960618093,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.575559602858472,
+            "validation_daily_mean_cross_entropy": 1.5683391559646425,
+            "validation_daily_mean_accuracy": 0.25533872310085787,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5756248488543705,
+            "validation_daily_mean_cross_entropy": 1.5684046061390424,
+            "validation_daily_mean_accuracy": 0.2544881369356384,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.575549620609193,
+            "validation_daily_mean_cross_entropy": 1.5684338276129794,
+            "validation_daily_mean_accuracy": 0.2539475778070844,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.5755417522239732,
+            "validation_daily_mean_cross_entropy": 1.568491170130878,
+            "validation_daily_mean_accuracy": 0.25469321022870306,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.575559352079909,
+            "validation_daily_mean_cross_entropy": 1.5684240030577459,
+            "validation_daily_mean_accuracy": 0.25403014976778726,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5755365189480768,
+            "validation_daily_mean_cross_entropy": 1.5683706747108246,
+            "validation_daily_mean_accuracy": 0.25459008442803405,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5755740209389015,
+            "validation_daily_mean_cross_entropy": 1.5683644986247636,
+            "validation_daily_mean_accuracy": 0.2534127899409198,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5755241320760702,
+            "validation_daily_mean_cross_entropy": 1.5683477418831144,
+            "validation_daily_mean_accuracy": 0.2547166046550914,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5756089079370796,
+            "validation_daily_mean_cross_entropy": 1.568471760863802,
+            "validation_daily_mean_accuracy": 0.25348120443497946,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5755131169445644,
+            "validation_daily_mean_cross_entropy": 1.5683470655722447,
+            "validation_daily_mean_accuracy": 0.25485388477885623,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.5755665791959,
+            "validation_daily_mean_cross_entropy": 1.568253974040666,
+            "validation_daily_mean_accuracy": 0.25419186162836455,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.5756009845030825,
+            "validation_daily_mean_cross_entropy": 1.5683197946662446,
+            "validation_daily_mean_accuracy": 0.2538704901680638,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5755617714132883,
+            "validation_daily_mean_cross_entropy": 1.5685262243111295,
+            "validation_daily_mean_accuracy": 0.2544461111974222,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.5755292173386095,
+            "validation_daily_mean_cross_entropy": 1.5683341852697243,
+            "validation_daily_mean_accuracy": 0.25498253556408196,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.575519098428346,
+            "validation_daily_mean_cross_entropy": 1.5684484998543424,
+            "validation_daily_mean_accuracy": 0.25381258861526446,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.5755263456674815,
+            "validation_daily_mean_cross_entropy": 1.5683644164605919,
+            "validation_daily_mean_accuracy": 0.25413325523324404,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.5756342300847108,
+            "validation_daily_mean_cross_entropy": 1.5683843153881363,
+            "validation_daily_mean_accuracy": 0.2535668797889883,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.5755584894192616,
+            "validation_daily_mean_cross_entropy": 1.5683748147402152,
+            "validation_daily_mean_accuracy": 0.2546159558652596,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.5756387002081045,
+            "validation_daily_mean_cross_entropy": 1.5685514900313906,
+            "validation_daily_mean_accuracy": 0.25456876671890505,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5756744826114542,
+            "validation_daily_mean_cross_entropy": 1.568232826977612,
+            "validation_daily_mean_accuracy": 0.2543836803019133,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5755621689569992,
+            "validation_daily_mean_cross_entropy": 1.5682507848359675,
+            "validation_daily_mean_accuracy": 0.2541145427916296,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.5755344270546523,
+            "validation_daily_mean_cross_entropy": 1.56824846049229,
+            "validation_daily_mean_accuracy": 0.2541802335292444,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5756030771020035,
+            "validation_daily_mean_cross_entropy": 1.5683655202151294,
+            "validation_daily_mean_accuracy": 0.2551820616239979,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 33,
+            "mean_batch_training_objective": 1.5755363283775368,
+            "validation_daily_mean_cross_entropy": 1.5685485667916408,
+            "validation_daily_mean_accuracy": 0.2517572776371006,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 34,
+            "mean_batch_training_objective": 1.5756371310700248,
+            "validation_daily_mean_cross_entropy": 1.5682220121778816,
+            "validation_daily_mean_accuracy": 0.25533321696547,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 35,
+            "mean_batch_training_objective": 1.5755676344298277,
+            "validation_daily_mean_cross_entropy": 1.5684975708623332,
+            "validation_daily_mean_accuracy": 0.25413176602042875,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 36,
+            "mean_batch_training_objective": 1.5755597889446824,
+            "validation_daily_mean_cross_entropy": 1.5684657263090886,
+            "validation_daily_mean_accuracy": 0.2550898946168975,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 37,
+            "mean_batch_training_objective": 1.575604444175518,
+            "validation_daily_mean_cross_entropy": 1.5683477314344916,
+            "validation_daily_mean_accuracy": 0.25374741673657525,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 38,
+            "mean_batch_training_objective": 1.575544757199844,
+            "validation_daily_mean_cross_entropy": 1.5682760633795385,
+            "validation_daily_mean_accuracy": 0.25490435533148303,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 39,
+            "mean_batch_training_objective": 1.5755443781394125,
+            "validation_daily_mean_cross_entropy": 1.5683539531145438,
+            "validation_daily_mean_accuracy": 0.25502981023759125,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 40,
+            "mean_batch_training_objective": 1.575615020216465,
+            "validation_daily_mean_cross_entropy": 1.568302474648829,
+            "validation_daily_mean_accuracy": 0.25405870760520294,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 41,
+            "mean_batch_training_objective": 1.5755081840046115,
+            "validation_daily_mean_cross_entropy": 1.5683239674663163,
+            "validation_daily_mean_accuracy": 0.2549908187743718,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 42,
+            "mean_batch_training_objective": 1.5756117708037516,
+            "validation_daily_mean_cross_entropy": 1.568216914199738,
+            "validation_daily_mean_accuracy": 0.25512223941178636,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 43,
+            "mean_batch_training_objective": 1.5755679482568983,
+            "validation_daily_mean_cross_entropy": 1.5684285691059918,
+            "validation_daily_mean_accuracy": 0.25334619490523635,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 44,
+            "mean_batch_training_objective": 1.57562624066467,
+            "validation_daily_mean_cross_entropy": 1.568512887118822,
+            "validation_daily_mean_accuracy": 0.25291805055934763,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 45,
+            "mean_batch_training_objective": 1.5755664671347378,
+            "validation_daily_mean_cross_entropy": 1.5681995386146454,
+            "validation_daily_mean_accuracy": 0.25486409541254224,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 46,
+            "mean_batch_training_objective": 1.5755082179357087,
+            "validation_daily_mean_cross_entropy": 1.568351827294703,
+            "validation_daily_mean_accuracy": 0.25414430051839276,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 47,
+            "mean_batch_training_objective": 1.5756081466902212,
+            "validation_daily_mean_cross_entropy": 1.5684348947973366,
+            "validation_daily_mean_accuracy": 0.2538358071208418,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 48,
+            "mean_batch_training_objective": 1.5755188956252626,
+            "validation_daily_mean_cross_entropy": 1.5685292548867336,
+            "validation_daily_mean_accuracy": 0.2542930123640226,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 49,
+            "mean_batch_training_objective": 1.5755237043417687,
+            "validation_daily_mean_cross_entropy": 1.5683738092977213,
+            "validation_daily_mean_accuracy": 0.25332501360397164,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 50,
+            "mean_batch_training_objective": 1.5755262779993615,
+            "validation_daily_mean_cross_entropy": 1.5684304845285606,
+            "validation_daily_mean_accuracy": 0.25294381745422984,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 51,
+            "mean_batch_training_objective": 1.57555293031774,
+            "validation_daily_mean_cross_entropy": 1.568482575188595,
+            "validation_daily_mean_accuracy": 0.2544735637673647,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 52,
+            "mean_batch_training_objective": 1.5755615362998803,
+            "validation_daily_mean_cross_entropy": 1.568585314123754,
+            "validation_daily_mean_accuracy": 0.2528982305544729,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 53,
+            "mean_batch_training_objective": 1.5757394189372207,
+            "validation_daily_mean_cross_entropy": 1.568244984900334,
+            "validation_daily_mean_accuracy": 0.2549009918041926,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 54,
+            "mean_batch_training_objective": 1.5755746636385237,
+            "validation_daily_mean_cross_entropy": 1.568170443474059,
+            "validation_daily_mean_accuracy": 0.254262439694123,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 55,
+            "mean_batch_training_objective": 1.5757352670754359,
+            "validation_daily_mean_cross_entropy": 1.5685168666193685,
+            "validation_daily_mean_accuracy": 0.2532858142076006,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 56,
+            "mean_batch_training_objective": 1.5755642609223404,
+            "validation_daily_mean_cross_entropy": 1.5684100289743734,
+            "validation_daily_mean_accuracy": 0.2538448336930224,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 57,
+            "mean_batch_training_objective": 1.575584312923287,
+            "validation_daily_mean_cross_entropy": 1.5686476862288092,
+            "validation_daily_mean_accuracy": 0.2523506555772957,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 58,
+            "mean_batch_training_objective": 1.5757006961208049,
+            "validation_daily_mean_cross_entropy": 1.5683689392895337,
+            "validation_daily_mean_accuracy": 0.2535968427024893,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 59,
+            "mean_batch_training_objective": 1.5755678726998599,
+            "validation_daily_mean_cross_entropy": 1.568316928418984,
+            "validation_daily_mean_accuracy": 0.2537752220765561,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 60,
+            "mean_batch_training_objective": 1.5755619552798017,
+            "validation_daily_mean_cross_entropy": 1.5684157681180186,
+            "validation_daily_mean_accuracy": 0.2538805364870052,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 61,
+            "mean_batch_training_objective": 1.5755999198833508,
+            "validation_daily_mean_cross_entropy": 1.568233569779719,
+            "validation_daily_mean_accuracy": 0.2542839083940982,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 62,
+            "mean_batch_training_objective": 1.575595956674596,
+            "validation_daily_mean_cross_entropy": 1.5683212812203335,
+            "validation_daily_mean_accuracy": 0.25446224704664,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 63,
+            "mean_batch_training_objective": 1.5756044446397763,
+            "validation_daily_mean_cross_entropy": 1.5684735684755788,
+            "validation_daily_mean_accuracy": 0.2544756285510866,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 64,
+            "mean_batch_training_objective": 1.57558534044459,
+            "validation_daily_mean_cross_entropy": 1.5683375578002625,
+            "validation_daily_mean_accuracy": 0.2535225666510496,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 65,
+            "mean_batch_training_objective": 1.5755294423177715,
+            "validation_daily_mean_cross_entropy": 1.5682363229918765,
+            "validation_daily_mean_accuracy": 0.2546919788534984,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 66,
+            "mean_batch_training_objective": 1.5755474227755566,
+            "validation_daily_mean_cross_entropy": 1.5682804537009434,
+            "validation_daily_mean_accuracy": 0.25564432568869566,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 67,
+            "mean_batch_training_objective": 1.5755250274078796,
+            "validation_daily_mean_cross_entropy": 1.568509770579547,
+            "validation_daily_mean_accuracy": 0.2543375992978147,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 68,
+            "mean_batch_training_objective": 1.5755685773727732,
+            "validation_daily_mean_cross_entropy": 1.5682345158550368,
+            "validation_daily_mean_accuracy": 0.25567555992545943,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 69,
+            "mean_batch_training_objective": 1.5755071095245368,
+            "validation_daily_mean_cross_entropy": 1.5684008256372703,
+            "validation_daily_mean_accuracy": 0.25282756743055873,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p003_l2_1em3",
+        "learning_rate": 0.003,
+        "l2": 0.001,
+        "seed": 71729,
+        "best_epoch": 29,
+        "best_validation_daily_mean_cross_entropy": 1.569894066369866,
+        "epochs_run": 44,
+        "stopped_early": true,
+        "training_seconds": 7.6561340219923295,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.5901252605621838,
+            "validation_daily_mean_cross_entropy": 1.5754445392297083,
+            "validation_daily_mean_accuracy": 0.2502142466553388,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5791356870730424,
+            "validation_daily_mean_cross_entropy": 1.5716172580225058,
+            "validation_daily_mean_accuracy": 0.2525269728293812,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5782855779208538,
+            "validation_daily_mean_cross_entropy": 1.570794441310533,
+            "validation_daily_mean_accuracy": 0.2527334196398218,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.5780809769086204,
+            "validation_daily_mean_cross_entropy": 1.5702544317777414,
+            "validation_daily_mean_accuracy": 0.2534647131581941,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5780146215913669,
+            "validation_daily_mean_cross_entropy": 1.5702061857360292,
+            "validation_daily_mean_accuracy": 0.25444330265353915,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5780111812665223,
+            "validation_daily_mean_cross_entropy": 1.5700950969262901,
+            "validation_daily_mean_accuracy": 0.2548217282298024,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5779976851545157,
+            "validation_daily_mean_cross_entropy": 1.5700868752848105,
+            "validation_daily_mean_accuracy": 0.2538746934847609,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.57796731085281,
+            "validation_daily_mean_cross_entropy": 1.5700819022152053,
+            "validation_daily_mean_accuracy": 0.2545103018220958,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.5779532560005274,
+            "validation_daily_mean_cross_entropy": 1.570145110685037,
+            "validation_daily_mean_accuracy": 0.25305077889620314,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5779755627102838,
+            "validation_daily_mean_cross_entropy": 1.5700097539985323,
+            "validation_daily_mean_accuracy": 0.2549988914257064,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5780401803525714,
+            "validation_daily_mean_cross_entropy": 1.570062701920589,
+            "validation_daily_mean_accuracy": 0.2535796918514605,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5779686734926863,
+            "validation_daily_mean_cross_entropy": 1.5701057132021838,
+            "validation_daily_mean_accuracy": 0.2535631108407821,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.5779601302848665,
+            "validation_daily_mean_cross_entropy": 1.5701419984201985,
+            "validation_daily_mean_accuracy": 0.2527634191289763,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5779793915194893,
+            "validation_daily_mean_cross_entropy": 1.57008924142298,
+            "validation_daily_mean_accuracy": 0.25363049671548726,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5779575751431831,
+            "validation_daily_mean_cross_entropy": 1.570050248586799,
+            "validation_daily_mean_accuracy": 0.25405460726859297,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5779957649370835,
+            "validation_daily_mean_cross_entropy": 1.5700330601270456,
+            "validation_daily_mean_accuracy": 0.25313800023527033,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5779457711596656,
+            "validation_daily_mean_cross_entropy": 1.56999794800443,
+            "validation_daily_mean_accuracy": 0.25496392174006394,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5780324024394914,
+            "validation_daily_mean_cross_entropy": 1.5701260557212677,
+            "validation_daily_mean_accuracy": 0.25280016899317975,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5779365540845918,
+            "validation_daily_mean_cross_entropy": 1.5700086630673047,
+            "validation_daily_mean_accuracy": 0.25452064994942514,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.577990376174716,
+            "validation_daily_mean_cross_entropy": 1.5699313708035594,
+            "validation_daily_mean_accuracy": 0.2533838253910303,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.578023903835963,
+            "validation_daily_mean_cross_entropy": 1.5699779764114623,
+            "validation_daily_mean_accuracy": 0.25322306674112016,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5779861264704353,
+            "validation_daily_mean_cross_entropy": 1.570212501928626,
+            "validation_daily_mean_accuracy": 0.25504606975530114,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.577951935452309,
+            "validation_daily_mean_cross_entropy": 1.570022531239635,
+            "validation_daily_mean_accuracy": 0.25363912270879263,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.5779428551122434,
+            "validation_daily_mean_cross_entropy": 1.5701186927666226,
+            "validation_daily_mean_accuracy": 0.25313433355079507,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.577949680790579,
+            "validation_daily_mean_cross_entropy": 1.5700307714036736,
+            "validation_daily_mean_accuracy": 0.253759016833725,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.578059329411904,
+            "validation_daily_mean_cross_entropy": 1.5700486855677875,
+            "validation_daily_mean_accuracy": 0.25270218112353127,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.577982073920968,
+            "validation_daily_mean_cross_entropy": 1.5700558419246597,
+            "validation_daily_mean_accuracy": 0.25392083511678937,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.5780622148041807,
+            "validation_daily_mean_cross_entropy": 1.5702425678412752,
+            "validation_daily_mean_accuracy": 0.25457033942941226,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5780999920019982,
+            "validation_daily_mean_cross_entropy": 1.569894066369866,
+            "validation_daily_mean_accuracy": 0.2545528771883472,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5779867712336277,
+            "validation_daily_mean_cross_entropy": 1.569895832187151,
+            "validation_daily_mean_accuracy": 0.25411537044075305,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.577958499951026,
+            "validation_daily_mean_cross_entropy": 1.569919052826931,
+            "validation_daily_mean_accuracy": 0.2536768552467672,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5780275668748507,
+            "validation_daily_mean_cross_entropy": 1.5700493694776558,
+            "validation_daily_mean_accuracy": 0.2543015087285002,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 33,
+            "mean_batch_training_objective": 1.5779591524457672,
+            "validation_daily_mean_cross_entropy": 1.57021467476727,
+            "validation_daily_mean_accuracy": 0.25218641708469824,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 34,
+            "mean_batch_training_objective": 1.578060519362467,
+            "validation_daily_mean_cross_entropy": 1.5699096333933067,
+            "validation_daily_mean_accuracy": 0.25519045587341704,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 35,
+            "mean_batch_training_objective": 1.5779945714533539,
+            "validation_daily_mean_cross_entropy": 1.5701609422486142,
+            "validation_daily_mean_accuracy": 0.253429129348299,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 36,
+            "mean_batch_training_objective": 1.5779838063498959,
+            "validation_daily_mean_cross_entropy": 1.5701179684870747,
+            "validation_daily_mean_accuracy": 0.25347361996863566,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 37,
+            "mean_batch_training_objective": 1.5780281734477215,
+            "validation_daily_mean_cross_entropy": 1.5700061425744776,
+            "validation_daily_mean_accuracy": 0.2528596222428303,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 38,
+            "mean_batch_training_objective": 1.577969822738222,
+            "validation_daily_mean_cross_entropy": 1.5699451981312724,
+            "validation_daily_mean_accuracy": 0.25386623049682316,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 39,
+            "mean_batch_training_objective": 1.577967364516652,
+            "validation_daily_mean_cross_entropy": 1.5700290307580713,
+            "validation_daily_mean_accuracy": 0.25445613092579533,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 40,
+            "mean_batch_training_objective": 1.5780407854915552,
+            "validation_daily_mean_cross_entropy": 1.569968513758534,
+            "validation_daily_mean_accuracy": 0.2532374256021349,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 41,
+            "mean_batch_training_objective": 1.5779318687912254,
+            "validation_daily_mean_cross_entropy": 1.570022367386229,
+            "validation_daily_mean_accuracy": 0.2542400537933643,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 42,
+            "mean_batch_training_objective": 1.5780359001350355,
+            "validation_daily_mean_cross_entropy": 1.5699186144597026,
+            "validation_daily_mean_accuracy": 0.25522814783468356,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 43,
+            "mean_batch_training_objective": 1.5779918480995452,
+            "validation_daily_mean_cross_entropy": 1.570081342738938,
+            "validation_daily_mean_accuracy": 0.25297862065477333,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 44,
+            "mean_batch_training_objective": 1.5780500578088543,
+            "validation_daily_mean_cross_entropy": 1.5701645123531145,
+            "validation_daily_mean_accuracy": 0.2519769900697437,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p01_l2_0",
+        "learning_rate": 0.01,
+        "l2": 0.0,
+        "seed": 71729,
+        "best_epoch": 4,
+        "best_validation_daily_mean_cross_entropy": 1.5685251642508335,
+        "epochs_run": 19,
+        "stopped_early": true,
+        "training_seconds": 3.108219663001364,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.581981502180957,
+            "validation_daily_mean_cross_entropy": 1.5685678772717357,
+            "validation_daily_mean_accuracy": 0.25547012833972976,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.57527596620085,
+            "validation_daily_mean_cross_entropy": 1.5685560803014444,
+            "validation_daily_mean_accuracy": 0.2531770027679847,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.574711820526142,
+            "validation_daily_mean_cross_entropy": 1.5692623103282366,
+            "validation_daily_mean_accuracy": 0.25159403853664275,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.574793171953693,
+            "validation_daily_mean_cross_entropy": 1.5685251642508335,
+            "validation_daily_mean_accuracy": 0.25466546920751004,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5745403025201228,
+            "validation_daily_mean_cross_entropy": 1.5686977731279168,
+            "validation_daily_mean_accuracy": 0.2547869834350104,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5748753878114476,
+            "validation_daily_mean_cross_entropy": 1.5688698111302348,
+            "validation_daily_mean_accuracy": 0.2551011927577974,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5747995360005393,
+            "validation_daily_mean_cross_entropy": 1.568903751107326,
+            "validation_daily_mean_accuracy": 0.2538922571079504,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.574864066363684,
+            "validation_daily_mean_cross_entropy": 1.5689042635647898,
+            "validation_daily_mean_accuracy": 0.25316929343275,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.5745755262891274,
+            "validation_daily_mean_cross_entropy": 1.5695945095730968,
+            "validation_daily_mean_accuracy": 0.25241033431496096,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5746657244909241,
+            "validation_daily_mean_cross_entropy": 1.5688398478040657,
+            "validation_daily_mean_accuracy": 0.2553814346172985,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.574739833761671,
+            "validation_daily_mean_cross_entropy": 1.5689153476540312,
+            "validation_daily_mean_accuracy": 0.25454842713426573,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.57465465597057,
+            "validation_daily_mean_cross_entropy": 1.5690039595759722,
+            "validation_daily_mean_accuracy": 0.25337951510721174,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.574522640831839,
+            "validation_daily_mean_cross_entropy": 1.569300209858503,
+            "validation_daily_mean_accuracy": 0.25395624244133763,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.5746182443724897,
+            "validation_daily_mean_cross_entropy": 1.5687579434231458,
+            "validation_daily_mean_accuracy": 0.2535714124174925,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5746916183120152,
+            "validation_daily_mean_cross_entropy": 1.5692410407313313,
+            "validation_daily_mean_accuracy": 0.25351143228406087,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.574697402538616,
+            "validation_daily_mean_cross_entropy": 1.5694244116900926,
+            "validation_daily_mean_accuracy": 0.2522865117382539,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5747096608422966,
+            "validation_daily_mean_cross_entropy": 1.5689800626253227,
+            "validation_daily_mean_accuracy": 0.2549103247514163,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.574716473774595,
+            "validation_daily_mean_cross_entropy": 1.5690776161938549,
+            "validation_daily_mean_accuracy": 0.25410183112121615,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5746326270058448,
+            "validation_daily_mean_cross_entropy": 1.5695696793704395,
+            "validation_daily_mean_accuracy": 0.25438788942922835,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p01_l2_1em4",
+        "learning_rate": 0.01,
+        "l2": 0.0001,
+        "seed": 71729,
+        "best_epoch": 14,
+        "best_validation_daily_mean_cross_entropy": 1.5682604037433032,
+        "epochs_run": 29,
+        "stopped_early": true,
+        "training_seconds": 4.844639210001333,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.5823435456646189,
+            "validation_daily_mean_cross_entropy": 1.5687233081376886,
+            "validation_daily_mean_accuracy": 0.2550320377539272,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5763549420294214,
+            "validation_daily_mean_cross_entropy": 1.5686579425021472,
+            "validation_daily_mean_accuracy": 0.2537204935312303,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5760416783794267,
+            "validation_daily_mean_cross_entropy": 1.5692205980004543,
+            "validation_daily_mean_accuracy": 0.25154843488661205,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.5762144304930719,
+            "validation_daily_mean_cross_entropy": 1.5684068981869763,
+            "validation_daily_mean_accuracy": 0.25568282324490865,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5760017485518159,
+            "validation_daily_mean_cross_entropy": 1.5685141466528296,
+            "validation_daily_mean_accuracy": 0.2543149883694874,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5763622532273194,
+            "validation_daily_mean_cross_entropy": 1.5686089161382728,
+            "validation_daily_mean_accuracy": 0.25573992582123956,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5763061610893652,
+            "validation_daily_mean_cross_entropy": 1.5685616247207521,
+            "validation_daily_mean_accuracy": 0.25475528321706997,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.5763818777738134,
+            "validation_daily_mean_cross_entropy": 1.5684890799313427,
+            "validation_daily_mean_accuracy": 0.25327530505229995,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.576102369266118,
+            "validation_daily_mean_cross_entropy": 1.5691643050942288,
+            "validation_daily_mean_accuracy": 0.25301096492960873,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.5762004890457526,
+            "validation_daily_mean_cross_entropy": 1.568401104425529,
+            "validation_daily_mean_accuracy": 0.2556218908872109,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5762805726438862,
+            "validation_daily_mean_cross_entropy": 1.5684311328181233,
+            "validation_daily_mean_accuracy": 0.2550999440884455,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5761999712301142,
+            "validation_daily_mean_cross_entropy": 1.5685175063600578,
+            "validation_daily_mean_accuracy": 0.2541312909253457,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.576072870222775,
+            "validation_daily_mean_cross_entropy": 1.5687423469535857,
+            "validation_daily_mean_accuracy": 0.2548285076839972,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.576170738087326,
+            "validation_daily_mean_cross_entropy": 1.5682604037433032,
+            "validation_daily_mean_accuracy": 0.2541389685971773,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5762493629341865,
+            "validation_daily_mean_cross_entropy": 1.5686721982234029,
+            "validation_daily_mean_accuracy": 0.25384808212681337,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5762554494279801,
+            "validation_daily_mean_cross_entropy": 1.568846921521829,
+            "validation_daily_mean_accuracy": 0.2525974425512328,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.576267090721765,
+            "validation_daily_mean_cross_entropy": 1.5683571190473093,
+            "validation_daily_mean_accuracy": 0.2552623829536649,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.5762781215016308,
+            "validation_daily_mean_cross_entropy": 1.5684957912718633,
+            "validation_daily_mean_accuracy": 0.2545897865524979,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.5761979412536975,
+            "validation_daily_mean_cross_entropy": 1.5689472909942566,
+            "validation_daily_mean_accuracy": 0.25496322325123205,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.5764449665459956,
+            "validation_daily_mean_cross_entropy": 1.5686898711193131,
+            "validation_daily_mean_accuracy": 0.2531556064339434,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.5762509144500185,
+            "validation_daily_mean_cross_entropy": 1.5694707009896813,
+            "validation_daily_mean_accuracy": 0.25107922840006724,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.5763747092577691,
+            "validation_daily_mean_cross_entropy": 1.5686384220997176,
+            "validation_daily_mean_accuracy": 0.2533907844688137,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.5760542120834518,
+            "validation_daily_mean_cross_entropy": 1.56884403295251,
+            "validation_daily_mean_accuracy": 0.25476065465036196,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.5760835698205444,
+            "validation_daily_mean_cross_entropy": 1.5687278342911921,
+            "validation_daily_mean_accuracy": 0.2527553399301429,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.576075935155885,
+            "validation_daily_mean_cross_entropy": 1.5685020689945297,
+            "validation_daily_mean_accuracy": 0.253785532894856,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.5765037127468753,
+            "validation_daily_mean_cross_entropy": 1.5685415315438076,
+            "validation_daily_mean_accuracy": 0.2537123346136934,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.576235821221897,
+            "validation_daily_mean_cross_entropy": 1.5688351264512872,
+            "validation_daily_mean_accuracy": 0.25338504161984393,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.5765927648829512,
+            "validation_daily_mean_cross_entropy": 1.569005189188923,
+            "validation_daily_mean_accuracy": 0.25485038013637784,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5763443837208468,
+            "validation_daily_mean_cross_entropy": 1.5683676925788363,
+            "validation_daily_mean_accuracy": 0.25562782287448355,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      },
+      {
+        "candidate_id": "lr0p01_l2_1em3",
+        "learning_rate": 0.01,
+        "l2": 0.001,
+        "seed": 71729,
+        "best_epoch": 17,
+        "best_validation_daily_mean_cross_entropy": 1.5699542589871531,
+        "epochs_run": 32,
+        "stopped_early": true,
+        "training_seconds": 5.489499777002493,
+        "history": [
+          {
+            "epoch": 1,
+            "mean_batch_training_objective": 1.583661794282015,
+            "validation_daily_mean_cross_entropy": 1.5703281434883634,
+            "validation_daily_mean_accuracy": 0.2529871760485705,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 2,
+            "mean_batch_training_objective": 1.5787560155231797,
+            "validation_daily_mean_cross_entropy": 1.5703281268655542,
+            "validation_daily_mean_accuracy": 0.2522717469117506,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 3,
+            "mean_batch_training_objective": 1.5784255141366255,
+            "validation_daily_mean_cross_entropy": 1.5707680162680577,
+            "validation_daily_mean_accuracy": 0.2511492995565612,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 4,
+            "mean_batch_training_objective": 1.578621845142082,
+            "validation_daily_mean_cross_entropy": 1.5700833213281822,
+            "validation_daily_mean_accuracy": 0.2540091035547529,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 5,
+            "mean_batch_training_objective": 1.5784186681036445,
+            "validation_daily_mean_cross_entropy": 1.5701922491727123,
+            "validation_daily_mean_accuracy": 0.25362932221392176,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 6,
+            "mean_batch_training_objective": 1.5787679127874032,
+            "validation_daily_mean_cross_entropy": 1.570341294980144,
+            "validation_daily_mean_accuracy": 0.25486306336963166,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 7,
+            "mean_batch_training_objective": 1.5787167444176418,
+            "validation_daily_mean_cross_entropy": 1.5701762950752836,
+            "validation_daily_mean_accuracy": 0.2543264958357539,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 8,
+            "mean_batch_training_objective": 1.5787760017858001,
+            "validation_daily_mean_cross_entropy": 1.57014100485114,
+            "validation_daily_mean_accuracy": 0.25268100087845247,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 9,
+            "mean_batch_training_objective": 1.5785249220517157,
+            "validation_daily_mean_cross_entropy": 1.5707926066273237,
+            "validation_daily_mean_accuracy": 0.2529857053514482,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 10,
+            "mean_batch_training_objective": 1.578601491118449,
+            "validation_daily_mean_cross_entropy": 1.5700962871194362,
+            "validation_daily_mean_accuracy": 0.25493387157188363,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 11,
+            "mean_batch_training_objective": 1.5786812403817347,
+            "validation_daily_mean_cross_entropy": 1.5701093816187277,
+            "validation_daily_mean_accuracy": 0.2535271215279549,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 12,
+            "mean_batch_training_objective": 1.5786099058660887,
+            "validation_daily_mean_cross_entropy": 1.5702433738100576,
+            "validation_daily_mean_accuracy": 0.25293269050796485,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 13,
+            "mean_batch_training_objective": 1.5784658939121259,
+            "validation_daily_mean_cross_entropy": 1.570339212854545,
+            "validation_daily_mean_accuracy": 0.25362184947206523,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 14,
+            "mean_batch_training_objective": 1.578569734718571,
+            "validation_daily_mean_cross_entropy": 1.5700618247111955,
+            "validation_daily_mean_accuracy": 0.2538833144015424,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 15,
+            "mean_batch_training_objective": 1.5786744668050245,
+            "validation_daily_mean_cross_entropy": 1.5703216187982445,
+            "validation_daily_mean_accuracy": 0.25322702940635666,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 16,
+            "mean_batch_training_objective": 1.5786672976367577,
+            "validation_daily_mean_cross_entropy": 1.570570057606792,
+            "validation_daily_mean_accuracy": 0.252789944390843,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 17,
+            "mean_batch_training_objective": 1.5786753436299148,
+            "validation_daily_mean_cross_entropy": 1.5699542589871531,
+            "validation_daily_mean_accuracy": 0.2562893177846178,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 18,
+            "mean_batch_training_objective": 1.578678135753211,
+            "validation_daily_mean_cross_entropy": 1.570245764170035,
+            "validation_daily_mean_accuracy": 0.25354045799763986,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 19,
+            "mean_batch_training_objective": 1.578622019106929,
+            "validation_daily_mean_cross_entropy": 1.5706039396415195,
+            "validation_daily_mean_accuracy": 0.2553051261706731,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 20,
+            "mean_batch_training_objective": 1.5788504816028404,
+            "validation_daily_mean_cross_entropy": 1.570374958068726,
+            "validation_daily_mean_accuracy": 0.2535043490021218,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 21,
+            "mean_batch_training_objective": 1.5786661135554014,
+            "validation_daily_mean_cross_entropy": 1.5711126337013397,
+            "validation_daily_mean_accuracy": 0.2513134938614376,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 22,
+            "mean_batch_training_objective": 1.578782495034256,
+            "validation_daily_mean_cross_entropy": 1.5703142069250464,
+            "validation_daily_mean_accuracy": 0.2527429387120333,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 23,
+            "mean_batch_training_objective": 1.578463836698051,
+            "validation_daily_mean_cross_entropy": 1.57055756247851,
+            "validation_daily_mean_accuracy": 0.2530479979698163,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 24,
+            "mean_batch_training_objective": 1.5784927229961232,
+            "validation_daily_mean_cross_entropy": 1.5703692939651914,
+            "validation_daily_mean_accuracy": 0.2541960231591561,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 25,
+            "mean_batch_training_objective": 1.5784933166649586,
+            "validation_daily_mean_cross_entropy": 1.5701636674394646,
+            "validation_daily_mean_accuracy": 0.25323559557737657,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 26,
+            "mean_batch_training_objective": 1.5789205545505598,
+            "validation_daily_mean_cross_entropy": 1.5702732165021251,
+            "validation_daily_mean_accuracy": 0.2534890843805321,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 27,
+            "mean_batch_training_objective": 1.578646981774073,
+            "validation_daily_mean_cross_entropy": 1.5706096597876682,
+            "validation_daily_mean_accuracy": 0.253351649812784,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 28,
+            "mean_batch_training_objective": 1.578989847923592,
+            "validation_daily_mean_cross_entropy": 1.570668086112733,
+            "validation_daily_mean_accuracy": 0.254964935226386,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 29,
+            "mean_batch_training_objective": 1.5787621050778162,
+            "validation_daily_mean_cross_entropy": 1.570084590360938,
+            "validation_daily_mean_accuracy": 0.25535538131463137,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 30,
+            "mean_batch_training_objective": 1.5787854746984593,
+            "validation_daily_mean_cross_entropy": 1.5703595026555763,
+            "validation_daily_mean_accuracy": 0.25349895172031456,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 31,
+            "mean_batch_training_objective": 1.5784535050957702,
+            "validation_daily_mean_cross_entropy": 1.5703903773866326,
+            "validation_daily_mean_accuracy": 0.25307459601967236,
+            "validation_model_ready_nodes": 125117
+          },
+          {
+            "epoch": 32,
+            "mean_batch_training_objective": 1.5786559585733793,
+            "validation_daily_mean_cross_entropy": 1.5706006825207715,
+            "validation_daily_mean_accuracy": 0.25361451922805306,
+            "validation_model_ready_nodes": 125117
+          }
+        ]
+      }
+    ],
+    "validation_metrics": {
+      "daily_mean_cross_entropy": 1.568170443474059,
+      "daily_mean_accuracy": 0.254262439694123,
+      "daily_mean_rank_ic": 0.013813358489628356,
+      "daily_mean_pearson_ic": 0.01236136957310746,
+      "model_ready_nodes": 125117,
+      "calendar_dates": 252,
+      "evaluated_dates": 251,
+      "rank_ic_valid_dates": 251,
+      "pearson_ic_valid_dates": 251
+    },
+    "validation_inference_seconds": 0.012483143014833331,
+    "selection_checkpoint": "selection_model.npz",
+    "selection_checkpoint_sha256": "d5d456cd9b21bded54cb655c960c2f7c132606d92c3e5cb233c36de82adec2c3",
+    "validation_prediction_manifest_sha256": "208526e729059eba73fe7ecb14483c092812d31a77714f2bb4b035465243ead7"
+  },
+  "refit": {
+    "seed": 80729,
+    "epochs": 54,
+    "training_seconds": 7.903976631001569,
+    "history": [
+      {
+        "epoch": 1,
+        "mean_batch_training_objective": 1.5883376860006315
+      },
+      {
+        "epoch": 2,
+        "mean_batch_training_objective": 1.5766056323245712
+      },
+      {
+        "epoch": 3,
+        "mean_batch_training_objective": 1.5753103268987032
+      },
+      {
+        "epoch": 4,
+        "mean_batch_training_objective": 1.5749434798253086
+      },
+      {
+        "epoch": 5,
+        "mean_batch_training_objective": 1.5748084050177056
+      },
+      {
+        "epoch": 6,
+        "mean_batch_training_objective": 1.574745415946632
+      },
+      {
+        "epoch": 7,
+        "mean_batch_training_objective": 1.574686642281972
+      },
+      {
+        "epoch": 8,
+        "mean_batch_training_objective": 1.57477528273694
+      },
+      {
+        "epoch": 9,
+        "mean_batch_training_objective": 1.5747536228928343
+      },
+      {
+        "epoch": 10,
+        "mean_batch_training_objective": 1.574757552844441
+      },
+      {
+        "epoch": 11,
+        "mean_batch_training_objective": 1.574699397396736
+      },
+      {
+        "epoch": 12,
+        "mean_batch_training_objective": 1.574715130080082
+      },
+      {
+        "epoch": 13,
+        "mean_batch_training_objective": 1.5747024700956365
+      },
+      {
+        "epoch": 14,
+        "mean_batch_training_objective": 1.574707291739087
+      },
+      {
+        "epoch": 15,
+        "mean_batch_training_objective": 1.5747560602143478
+      },
+      {
+        "epoch": 16,
+        "mean_batch_training_objective": 1.5747367567547426
+      },
+      {
+        "epoch": 17,
+        "mean_batch_training_objective": 1.5747010906867478
+      },
+      {
+        "epoch": 18,
+        "mean_batch_training_objective": 1.574693095601905
+      },
+      {
+        "epoch": 19,
+        "mean_batch_training_objective": 1.5746879883720282
+      },
+      {
+        "epoch": 20,
+        "mean_batch_training_objective": 1.5747007274803686
+      },
+      {
+        "epoch": 21,
+        "mean_batch_training_objective": 1.574714719630909
+      },
+      {
+        "epoch": 22,
+        "mean_batch_training_objective": 1.5747458033692654
+      },
+      {
+        "epoch": 23,
+        "mean_batch_training_objective": 1.5746711158719602
+      },
+      {
+        "epoch": 24,
+        "mean_batch_training_objective": 1.5747256708863453
+      },
+      {
+        "epoch": 25,
+        "mean_batch_training_objective": 1.574814813521261
+      },
+      {
+        "epoch": 26,
+        "mean_batch_training_objective": 1.5747224523951466
+      },
+      {
+        "epoch": 27,
+        "mean_batch_training_objective": 1.5746953142556448
+      },
+      {
+        "epoch": 28,
+        "mean_batch_training_objective": 1.5747390752515729
+      },
+      {
+        "epoch": 29,
+        "mean_batch_training_objective": 1.5747337160329418
+      },
+      {
+        "epoch": 30,
+        "mean_batch_training_objective": 1.5747618834111128
+      },
+      {
+        "epoch": 31,
+        "mean_batch_training_objective": 1.574740594924649
+      },
+      {
+        "epoch": 32,
+        "mean_batch_training_objective": 1.5748544180846897
+      },
+      {
+        "epoch": 33,
+        "mean_batch_training_objective": 1.5747362938631655
+      },
+      {
+        "epoch": 34,
+        "mean_batch_training_objective": 1.5747084636991386
+      },
+      {
+        "epoch": 35,
+        "mean_batch_training_objective": 1.5747163631693106
+      },
+      {
+        "epoch": 36,
+        "mean_batch_training_objective": 1.574736879878307
+      },
+      {
+        "epoch": 37,
+        "mean_batch_training_objective": 1.574764911951945
+      },
+      {
+        "epoch": 38,
+        "mean_batch_training_objective": 1.5746917361260724
+      },
+      {
+        "epoch": 39,
+        "mean_batch_training_objective": 1.5747535123860024
+      },
+      {
+        "epoch": 40,
+        "mean_batch_training_objective": 1.5748071110755713
+      },
+      {
+        "epoch": 41,
+        "mean_batch_training_objective": 1.5747166879142778
+      },
+      {
+        "epoch": 42,
+        "mean_batch_training_objective": 1.5746936321399176
+      },
+      {
+        "epoch": 43,
+        "mean_batch_training_objective": 1.5747584311963598
+      },
+      {
+        "epoch": 44,
+        "mean_batch_training_objective": 1.5747549004268016
+      },
+      {
+        "epoch": 45,
+        "mean_batch_training_objective": 1.5747030848560373
+      },
+      {
+        "epoch": 46,
+        "mean_batch_training_objective": 1.574727575992559
+      },
+      {
+        "epoch": 47,
+        "mean_batch_training_objective": 1.574709734329661
+      },
+      {
+        "epoch": 48,
+        "mean_batch_training_objective": 1.574699545650019
+      },
+      {
+        "epoch": 49,
+        "mean_batch_training_objective": 1.5747728761411504
+      },
+      {
+        "epoch": 50,
+        "mean_batch_training_objective": 1.574720082782215
+      },
+      {
+        "epoch": 51,
+        "mean_batch_training_objective": 1.5748885595130497
+      },
+      {
+        "epoch": 52,
+        "mean_batch_training_objective": 1.5747246904950847
+      },
+      {
+        "epoch": 53,
+        "mean_batch_training_objective": 1.5746898588672746
+      },
+      {
+        "epoch": 54,
+        "mean_batch_training_objective": 1.5747485038167857
+      }
+    ]
+  },
+  "test": {
+    "metrics": {
+      "daily_mean_cross_entropy": 1.5709638476846703,
+      "daily_mean_accuracy": 0.2510851188580236,
+      "daily_mean_rank_ic": 0.0040063821042013,
+      "daily_mean_pearson_ic": -0.0014726516396383167,
+      "model_ready_nodes": 125106,
+      "calendar_dates": 252,
+      "evaluated_dates": 251,
+      "rank_ic_valid_dates": 251,
+      "pearson_ic_valid_dates": 251
+    },
+    "inference_seconds": 0.011392983986297622,
+    "probabilities_generated_once": true,
+    "prediction_manifest_sha256": "bd8254d61bcfe1229d296c5f9a5bb1cf5883d845478d22d16bee8842035bc73e"
+  },
+  "checkpoint": {
+    "path": "model.npz",
+    "sha256": "15b4a0c0c3faf5b8284fd7e526a2788f7d9023fc4c5cf1fa8967445d65b45602",
+    "parameter_count": 3495,
+    "device": "cpu",
+    "gpu_memory_bytes": 0
+  },
+  "wall_seconds": 72.5368363270245
+}

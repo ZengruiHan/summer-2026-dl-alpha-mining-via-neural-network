@@ -1,0 +1,197 @@
+{
+  "status": "complete",
+  "created_at_utc": "2026-07-10T19:29:41.023411+00:00",
+  "model": "M0",
+  "headline_transaction_cost_bps": 10.0,
+  "date_start": "2009-01-02",
+  "date_end": "2025-12-31",
+  "wealth_date_start": "2009-01-05",
+  "wealth_date_end": "2025-12-31",
+  "fold_count": 17,
+  "test_years": [
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "fold_boundary_dates": [
+    "2009-01-05",
+    "2010-01-05",
+    "2011-01-04",
+    "2012-01-04",
+    "2013-01-03",
+    "2014-01-03",
+    "2015-01-05",
+    "2016-01-05",
+    "2017-01-04",
+    "2018-01-03",
+    "2019-01-03",
+    "2020-01-03",
+    "2021-01-05",
+    "2022-01-04",
+    "2023-01-04",
+    "2024-01-03",
+    "2025-01-03"
+  ],
+  "overall_cumulative_net_return": -0.8231569388379434,
+  "overall_maximum_drawdown": 0.8393535526834832,
+  "fold_sharpe": [
+    -2.112514742308027,
+    -3.5445154074546696,
+    -0.979559901758725,
+    -3.101897102563004,
+    -2.041842763531026,
+    -2.0921528117830577,
+    0.1386039699551803,
+    -1.4162375890762486,
+    -2.203568539431772,
+    -0.03361644686736353,
+    0.4919381206204641,
+    0.13926995635799802,
+    -2.2847399489480904,
+    0.7123770667778607,
+    -2.3043739552455254,
+    -1.54135612211367,
+    -1.367801637612282
+  ],
+  "fold_rank_ic": [
+    0.0017635464845195173,
+    0.007042845288581253,
+    0.022917350560647566,
+    -0.0037183238699197113,
+    0.008011001571396038,
+    0.009269916095907048,
+    0.009370169088743087,
+    0.004016493020539148,
+    0.013609863052350292,
+    0.009246732394616082,
+    0.01815249121040715,
+    0.026555403739300806,
+    0.009006282823184676,
+    0.032298767481624746,
+    0.011886835180184942,
+    0.015560656534412258,
+    0.0062703137744048836
+  ],
+  "fold_maximum_drawdown": [
+    0.31990070169578677,
+    0.1934635916859121,
+    0.08319088459820734,
+    0.14265121798803726,
+    0.09270843373428062,
+    0.1076021432904144,
+    0.038791189152005856,
+    0.1381641776268301,
+    0.11234100228144983,
+    0.060061878568963833,
+    0.0386371263917793,
+    0.20401469471464773,
+    0.2450041285646687,
+    0.08092200995155441,
+    0.15915430582706247,
+    0.1554560043105584,
+    0.18069854231400806
+  ],
+  "fold_standalone_cumulative_net_return": [
+    -0.2973039511809108,
+    -0.1934635916859121,
+    -0.06122371512389846,
+    -0.14005521738381477,
+    -0.08768767632362096,
+    -0.09720762176821374,
+    0.004618028072777669,
+    -0.09604092036809397,
+    -0.09701976030126602,
+    -0.0027083511385036507,
+    0.02608635978266549,
+    0.00982239857183198,
+    -0.2450041285646687,
+    0.09531084844761595,
+    -0.15444223357424602,
+    -0.1126217731622815,
+    -0.10747716644195338
+  ],
+  "fold_additive_final_wealth_contribution": [
+    -0.2973039511809108,
+    -0.13594610146804004,
+    -0.034698537323105086,
+    -0.07451657589082887,
+    -0.04012016644259696,
+    -0.040575887137753355,
+    0.0017402520675224439,
+    -0.036359078725299226,
+    -0.033202097897590134,
+    -0.0008369288621193433,
+    0.008039318543510641,
+    0.003106041289578987,
+    -0.07823625866745638,
+    0.02297849515000089,
+    -0.040783332579029885,
+    -0.025146774117320397,
+    -0.021295355596505135
+  ],
+  "fold_contribution_sum": -0.8231569388379426,
+  "contribution_definition": "chronological wealth-before-fold times standalone fold return; contributions add exactly to final cumulative net return",
+  "return_missing_assumption": "primary stale-price convention: a missing held return contributes zero with original weights unchanged and no ex-post reweighting; a date is unavailable only when every held return is missing",
+  "sources": {
+    "portfolio_metrics": "/home/wangb/projects/alpha-mining-neural-network/results/portfolio_metrics/portfolio_metrics.json",
+    "portfolio_metrics_sha256": "317684f9c7a857faa76aee6d51eaa4f41a56624fa74deffadf897fa61c06f546",
+    "prediction_metrics": "/home/wangb/projects/alpha-mining-neural-network/results/prediction_metrics/prediction_metrics.json",
+    "prediction_metrics_sha256": "604e4c5ec4d2f3e770bc906ba08bc6cbe5862832443f2c392b93898cef6a73fb",
+    "headline_transaction_cost_bps": 10.0
+  },
+  "matplotlib_version": "3.10.9",
+  "files": {
+    "M0_oos_cumulative_wealth_10bps.png": {
+      "sha256": "de7995690d5df72120f3e8407c748cfa8e27a22d9517d37f29be02c6be16e7b8",
+      "bytes": 235810
+    },
+    "M0_oos_cumulative_wealth_10bps.pdf": {
+      "sha256": "51f1e9e37df468feb6f48aac3e4059a7fc23777a4cc320fa4be541f7463eb9a8",
+      "bytes": 66069
+    },
+    "M0_fold_metrics_over_time_10bps.png": {
+      "sha256": "9c82c59e79130da37a29f99d21184d89f66bd82682da76e4161e9b3e61a79e68",
+      "bytes": 239765
+    },
+    "M0_fold_metrics_over_time_10bps.pdf": {
+      "sha256": "9fd2548042aca9ec6cbad6fbf52adb0aa15ed5c6b61e3cc004d02d2577b76872",
+      "bytes": 28714
+    },
+    "M0_fold_cumulative_net_return_contribution_10bps.png": {
+      "sha256": "6af7b1f99348faa1ab1aca500e32b22ce21e3f4dac901b0e90b468d5072b3c89",
+      "bytes": 93715
+    },
+    "M0_fold_cumulative_net_return_contribution_10bps.pdf": {
+      "sha256": "aba406c3af14f5a104c4d820de5b9e631c3b474286473f19eb0950ad99311b30",
+      "bytes": 24408
+    },
+    "M0_oos_diagnostic_dashboard_10bps.png": {
+      "sha256": "531cf79ddf91e673a419b2055964b57735eb76c4f1d4c40a1fa161837c37de60",
+      "bytes": 486788
+    },
+    "M0_oos_diagnostic_dashboard_10bps.pdf": {
+      "sha256": "d1e9b9d5db648ce32e65000c0afc79cffe9a02b9938d8217275fbe7fd343c491",
+      "bytes": 77140
+    }
+  },
+  "checks": {
+    "wealth_endpoint_matches_summary": "passed",
+    "fold_metric_mapping": "passed",
+    "fold_standalone_returns_match_summary": "passed",
+    "fold_contributions_sum_to_overall_return": "passed"
+  }
+}

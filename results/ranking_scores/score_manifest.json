@@ -1,0 +1,71 @@
+{
+  "status": "complete",
+  "created_at_utc": "2026-07-10T19:29:23.102110+00:00",
+  "model": "M0",
+  "artifact": "cross-sectional ranking scores",
+  "input": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities",
+  "input_probability_manifest_sha256": "577dae4e3e83449cbb478e5941f9575d5ef2125b2d632e08a0d0a4fe06c04ff7",
+  "formula": "score[i,t] = sum_{c=-2}^{2} c * probability[i,t,c]",
+  "class_axis_signed_labels": [
+    -2,
+    -1,
+    0,
+    1,
+    2
+  ],
+  "ranking_rule": "ascending (score, permno); ordinal rank 1 is lowest; -1 is masked",
+  "shape": [
+    4276,
+    500
+  ],
+  "date_start": "2009-01-02",
+  "date_end": "2025-12-31",
+  "inference_nodes": 2132725,
+  "files": {
+    "dates.npy": {
+      "source": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities/dates.npy",
+      "sha256": "62008be51b52cd2490a539f50e2a2aaf415b9eadde2f0355f35162e4dad43ac0",
+      "publication_method": "hardlink",
+      "bytes": 34336
+    },
+    "permno.npy": {
+      "source": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities/permno.npy",
+      "sha256": "6f5046fb5dc5e018a0fbec504ca1c0b9dfc051fe7e41d40ad586c61091df04ab",
+      "publication_method": "hardlink",
+      "bytes": 8552128
+    },
+    "fold_index.npy": {
+      "source": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities/fold_index.npy",
+      "sha256": "c2aa14acbea5bc814d189f238cf4f31501c484f94b2d8be1489546e3bee3b508",
+      "publication_method": "hardlink",
+      "bytes": 4404
+    },
+    "inference_mask.npy": {
+      "source": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities/inference_mask.npy",
+      "sha256": "a9d13e19006ccf1056a48cdf4d9d33d302b89e0781232c1659a3440568b146c7",
+      "publication_method": "hardlink",
+      "bytes": 2138128
+    },
+    "evaluation_mask.npy": {
+      "source": "/home/wangb/projects/alpha-mining-neural-network/results/probabilities/evaluation_mask.npy",
+      "sha256": "f6163bc52495f6c5b6dc71b97c50cb54a96fa362b3e40e76d2856628165edf8e",
+      "publication_method": "hardlink",
+      "bytes": 2138128
+    },
+    "ranking_scores.npy": {
+      "sha256": "9dee191b43f44123f7707d1cef7f373d35f2e3096928e3fe297cf4d746cdef75",
+      "bytes": 8552128,
+      "derivation": "computed"
+    },
+    "ordinal_rank.npy": {
+      "sha256": "0964a08f68bdc71f0d3375a3dba4f2cc3e7b81fa279e9f814416bdeb13f0cf31",
+      "bytes": 4276128,
+      "derivation": "computed"
+    }
+  },
+  "checks": {
+    "score_formula": "passed",
+    "masked_scores_nan": "passed",
+    "daily_permno_tie_break": "passed"
+  }
+}

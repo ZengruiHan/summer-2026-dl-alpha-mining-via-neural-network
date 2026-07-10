@@ -1,0 +1,51 @@
+{
+  "stage": "refit_train_plus_validation_checkpoint",
+  "fold_index": 0,
+  "split": "test",
+  "years": [
+    2009
+  ],
+  "date_start": "2009-01-02",
+  "date_end": "2009-12-31",
+  "class_id_to_signed_label": {
+    "0": -2,
+    "1": -1,
+    "2": 0,
+    "3": 1,
+    "4": 2
+  },
+  "probability_shape": [
+    252,
+    500,
+    5
+  ],
+  "masked_prediction_policy": "probabilities/scores are NaN and classes use sentinels where inference_mask is false",
+  "score_definition": "sum_{c=-2}^{2} c * p(c)",
+  "evaluation_mask_definition": "loss_mask = label_mask AND complete_numeric_mask",
+  "inference_mask_definition": "complete_numeric_mask",
+  "file_sha256": {
+    "dates.npy": "c7a7cb1e6fe68298457e639005672048f1f33fbc5a7e59e7aac993687af5b2e5",
+    "permno.npy": "ce29776654891956f7869f54f0a1c974325d37aa0b36b2902652abd06e0da7b9",
+    "probabilities.npy": "dbf87f6c0484b5f15db37112dbfb061a08249dbff1af7f98b8950e2d22fb9c98",
+    "scores.npy": "2dea528597f98a88d6eddd505e85da517eb190e51fd269f72337c6be6458efe9",
+    "predicted_class.npy": "8703159917bcf1a0c451e95594ab0d5d436351d102d3844dfa4543b7f6fd1693",
+    "predicted_signed.npy": "68b5c4d24078ac94da99cadce8d99fdc776096a8a04edfeefba003c185eb6087",
+    "y.npy": "68ce2b8993d3339154b4d0faa811bc8b36342ba756fcec5388fa0aabf64ab4a8",
+    "y_signed.npy": "db9f8cafe05c3da306b12634bea4c17afb2fca567081d88d3e71f88411fb603f",
+    "target_return.npy": "910bf8049ff01b6bb61ad538138a390d259e20a70f7c715038d6dee26aa0b81a",
+    "target_date.npy": "6bb812f2b529c5f01f545e59f9503449822bf9bdadda82039c259998974845d2",
+    "inference_mask.npy": "7b8f3c332e60ea88ae19140b28727bf3e610330a39f6e34ff144e2d1fdd50c59",
+    "evaluation_mask.npy": "3ace3f218758a6a8e2732e4e6ad1a9451639053c19efa9108cbdbbdd4a44ef58"
+  },
+  "metrics": {
+    "daily_mean_cross_entropy": 1.5845259133563099,
+    "daily_mean_accuracy": 0.24383214654065685,
+    "daily_mean_rank_ic": 0.0017534078506332834,
+    "daily_mean_pearson_ic": -0.008008424373686374,
+    "model_ready_nodes": 125409,
+    "calendar_dates": 252,
+    "evaluated_dates": 251,
+    "rank_ic_valid_dates": 251,
+    "pearson_ic_valid_dates": 251
+  }
+}

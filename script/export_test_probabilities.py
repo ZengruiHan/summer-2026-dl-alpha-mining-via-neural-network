@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Publish M0 test-period probabilities to results/probabilities."""
+"""Publish model test-period probabilities to a stable results directory."""
 
 import sys
 from pathlib import Path
@@ -10,7 +10,7 @@ SOURCE_ROOT = REPOSITORY_ROOT / "src"
 if str(SOURCE_ROOT) not in sys.path:
     sys.path.insert(0, str(SOURCE_ROOT))
 
-from alpha_mining_neural_network.probability_export import main
+from alpha_mining_neural_network.probability_export import main  # noqa: E402
 
 
 if __name__ == "__main__":

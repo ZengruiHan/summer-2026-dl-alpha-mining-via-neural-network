@@ -1,0 +1,190 @@
+% ========================
+% Typography and layout
+% ========================
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\linespread{1.05}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+
+% ========================
+% Math
+% ========================
+\usepackage{amsmath,amssymb,amsthm,mathtools,amsfonts,bbm,mathrsfs}
+\usepackage{bm}
+
+% ========================
+% Figures, tables, and lists
+% ========================
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{enumitem}
+\setlist{nosep}
+
+% ========================
+% Citations
+% ========================
+\usepackage[numbers,sort&compress]{natbib}
+\setlength{\bibhang}{1.5em}
+\setlength{\bibsep}{0pt}
+\let\oldthebibliography\thebibliography
+\let\endoldthebibliography\endthebibliography
+\renewenvironment{thebibliography}[1]
+  {\oldthebibliography{#1}%
+   \RaggedRight
+   \frenchspacing
+   \hbadness=10000
+   \def\newblock{\unskip\space}%
+   \setlength{\parskip}{0pt}%
+   \setlength{\itemsep}{0pt}%
+   \setlength{\parsep}{0pt}}
+  {\endoldthebibliography}
+
+% ========================
+% Math operators
+% ========================
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\covop}{Cov}
+\DeclareMathOperator{\Covop}{COV}
+\DeclareMathOperator{\cum}{Cum}
+\DeclareMathOperator{\Cumop}{CUM}
+
+\DeclareMathOperator{\corrop}{Corr}
+\DeclareMathOperator{\varop}{Var}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\MSE}{MSE}
+\DeclareMathOperator{\MAE}{MAE}
+\DeclareMathOperator{\ReLU}{ReLU}
+\DeclareMathOperator{\softmax}{\widetilde{\max}}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\newcommand{\sphere}{\mathbb S}
+
+% ========================
+% Number systems and common objects
+% ========================
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\sF}{\mathscr F}
+
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\K}{\kappa}
+\newcommand{\M}{\mathbb M}
+
+% ========================
+% Calculus, probability, and statistics
+% ========================
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\od}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\newcommand{\1}{\mathbbm 1}
+\newcommand{\var}[1]{\varop\!\left(#1\right)}
+\newcommand{\cov}[2]{\covop\!\left(#1,#2\right)}
+\newcommand{\COV}[1]{\Covop\!\left(#1\right)}
+\newcommand{\CUM}[1]{\Cumop\!\left(#1\right)}
+\newcommand{\corr}[2]{\corrop\!\left(#1,#2\right)}
+\newcommand{\pro}[1]{\PP\!\left(#1\right)}
+
+\newcommand{\pt}{\partial}
+
+% ========================
+% Paired delimiters
+% ========================
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+\DeclarePairedDelimiter{\paren}{\lparen}{\rparen}
+\DeclarePairedDelimiter{\bracket}{\lbrack}{\rbrack}
+\DeclarePairedDelimiter{\set}{\lbrace}{\rbrace}
+
+\newcommand{\nm}[1]{\norm*{#1}}
+\newcommand{\inn}[1]{\inner*{#1}}
+\newcommand{\ab}[1]{\abs*{#1}}
+\newcommand{\st}[1]{\set*{#1}}
+\newcommand{\bk}[1]{\bracket*{#1}}
+\newcommand{\pa}[1]{{\paren*{#1}}}
+\newcommand{\tx}[1]{\text{#1}}
+
+% Compatibility aliases used in older notes.
+\newcommand{\rl}{\ReLU}
+\newcommand{\x}{\times}
+\newcommand{\ox}{\otimes}
+\newcommand{\xx}{\mathcal{X}}
+\newcommand{\odx}{\odot}
+\newcommand{\dx}{\cdot}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\mom}{momentum}
+
+
+\DeclareMathOperator{\vol}{volatility}
+\DeclareMathOperator{\dv}{dollar\_volume}
+\DeclareMathOperator{\turnover}{turnover}
+\DeclareMathOperator{\mf}{market\_factor}
+\DeclareMathOperator{\mb}{market\_beta}
+\DeclareMathOperator{\sector}{sector}
+
+
+% ========================
+% Theorem-like environments
+% ========================
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{notation}[theorem]{Notation}
+
+% ========================
+% Problem set environments
+% ========================
+\newcounter{problem}
+
+\newenvironment{problem}[1][]{
+  \refstepcounter{problem}
+  \par\medskip
+  \noindent\textbf{Problem \theproblem. #1}
+  \par
+}{
+  \medskip
+}
+
+\newenvironment{solution}[1][]{
+  \par\medskip
+  \noindent\textbf{Solution #1.}
+  \par
+}{
+  \medskip
+}
+
+% ========================
+% Links and references
+% ========================
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize,nameinlink]{cleveref}

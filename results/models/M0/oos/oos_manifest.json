@@ -1,0 +1,48 @@
+{
+  "fold_count": 17,
+  "fold_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "date_start": "2009-01-02",
+  "date_end": "2025-12-31",
+  "probability_shape": [
+    4276,
+    500,
+    5
+  ],
+  "non_overlapping_strictly_increasing_dates": true,
+  "class_id_to_signed_label": {
+    "0": -2,
+    "1": -1,
+    "2": 0,
+    "3": 1,
+    "4": 2
+  },
+  "metrics": {
+    "daily_mean_cross_entropy": 1.5739088191424044,
+    "daily_mean_accuracy": 0.25213304465040365,
+    "daily_mean_rank_ic": 0.012087253062521336,
+    "daily_mean_pearson_ic": 0.0058357802348380835,
+    "model_ready_nodes": 2123394,
+    "calendar_dates": 4276,
+    "evaluated_dates": 4259,
+    "rank_ic_valid_dates": 4259,
+    "pearson_ic_valid_dates": 4259
+  }
+}

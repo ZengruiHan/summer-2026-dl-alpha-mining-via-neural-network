@@ -1,0 +1,53 @@
+{
+  "model": "M0-Plus",
+  "model_family": "xgboost_multiclass",
+  "stage": "refit_train_plus_validation_checkpoint",
+  "fold_index": 15,
+  "split": "test",
+  "years": [
+    2024
+  ],
+  "date_start": "2024-01-02",
+  "date_end": "2024-12-31",
+  "class_id_to_signed_label": {
+    "0": -2,
+    "1": -1,
+    "2": 0,
+    "3": 1,
+    "4": 2
+  },
+  "probability_shape": [
+    252,
+    500,
+    5
+  ],
+  "masked_prediction_policy": "probabilities/scores are NaN and classes use sentinels where inference_mask is false",
+  "score_definition": "sum_{c=-2}^{2} c * p(c)",
+  "evaluation_mask_definition": "loss_mask = label_mask AND complete_numeric_mask",
+  "inference_mask_definition": "complete_numeric_mask",
+  "file_sha256": {
+    "dates.npy": "9266002e95e0080692a7fae88bade64df9d754c2ed4afe074c460c79ff79995a",
+    "permno.npy": "4a94434e681ae95b0671104eb19cdd10b6ca80c9331f4ba522b28458f3671478",
+    "probabilities.npy": "9960f09f5801bd173e7522cafa1533fbb346f7d1cb8eb9dd12ac49024c7dc62e",
+    "scores.npy": "939d9ea35aee840264cc8d9f0f4c9f0ef0d38f978a5032778bbf0f91df78f9d8",
+    "predicted_class.npy": "8c97d770648d2812da5eb2991e6587077c77c2ea2272476ebc6db2ffc50cb527",
+    "predicted_signed.npy": "6a45c08df9080cfc67d176d70e39f48e81d9bf454da5b717441eac8b14ef55e3",
+    "y.npy": "de9abc358cb8670061f239c06b2baeee195ecf59c1380b397bcb132d90baa85c",
+    "y_signed.npy": "a757a5cba270dccc7752505ec1b3f3344f50891cffee8182a8fa7da97aee77a6",
+    "target_return.npy": "4d7be7d93381e43609efa142efbcabf7a7ac5d37a8ff98add084b5fb058f3115",
+    "target_date.npy": "be507c923c6eff0a699f2a6e9073f20d7e66e7dbe0816cb4e57e34644543219f",
+    "inference_mask.npy": "c8be8fd6aa11a7692f5ebcdf597e8643b2afd83defbec33d0a1a25ed777ab198",
+    "evaluation_mask.npy": "df7c68e61336572aa649b4750d3e43ce9d9b70c232110842a5236eb8928435e5"
+  },
+  "metrics": {
+    "daily_mean_cross_entropy": 1.5656821200572162,
+    "daily_mean_accuracy": 0.2560706496496771,
+    "daily_mean_rank_ic": 0.01767814638685131,
+    "daily_mean_pearson_ic": 0.0006467664999315751,
+    "model_ready_nodes": 125241,
+    "calendar_dates": 252,
+    "evaluated_dates": 251,
+    "rank_ic_valid_dates": 251,
+    "pearson_ic_valid_dates": 251
+  }
+}

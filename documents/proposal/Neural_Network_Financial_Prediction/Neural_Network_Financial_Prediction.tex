@@ -1,0 +1,476 @@
+\documentclass[11pt]{article}
+\input{../macro/preamble.tex}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.15em}
+\linespread{1.0}
+\setlist{nosep}
+
+\newcommand{\indicator}{\mathbf{1}}
+
+\title{\textbf{Neural Networks in Financial Prediction}}
+\author{Zengrui Han, Bojue Wang}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This project studies cross-asset return for liquid U.S. equities. The prediction target is the five-class 1-horizon return label: $\st{-2, -1, 0, 1, 2}$. The model hierarchy is
+\[
+    \text{Logistic} \to \text{MLP} \to \text{GCN} \to \tx{Multi-relatinal GCN}.
+    % \begin{cases}
+    %     \text{Cellular NN}\\
+    %     \text{Sheaf GCN}
+    % \end{cases} \to \text{Sheaf Cellular NN}.
+\]
+The experiment uses CRSP daily data from January 1, 2000 through December 31, 2025. The goal is to evaluate whether nonlinearity, graph convolution, higher-order structure of relations, and signal consistency improve generalization. 
+\end{abstract}
+
+\tableofcontents
+
+\section{Ingredients}
+
+\subsection{Liquid assets}
+
+Dataset is CRSP daily equity from January 1, 2000 through December 31, 2025. At each trading day $t \in \mathcal T = [\tx{2000-01-01, 2025-12-31}]$, the investable asset universe $\mathcal A_t$ is formed from the top 500 U.S. equities by trailing dollar\_volume of 21 days, i.e. \[\mathcal A_t = \argmax_{i_1\ge...\ge i_{500}}\st{\tx{lagged$^\pa{21}$\_dollar\_volume}_{i,t}}.\]
+
+Accoring to the following section [Raw data], we have \[\tx{dollar\_volume}_{i,t} = \ab{\tx{prc}_{i,t}}\cdot\tx{vol}_{i,t},\] \[\tx{lagged$^\pa{21}$\_dollar\_volume}_{i,t} = \frac{1}{21} \sum_{s\in W_{i,t}}\tx{dollar\_volume}_{i,s},\quad W_{i,t} = \st{t-21,...,t-1}.\]
+\subsection{Target}
+For \(\alpha \in \{20,40,60,80\},\) define
+\[
+    q_{\alpha,t+1}
+    =
+    \operatorname{Quantile}_{\alpha}\pa{\st{r_{j,t+1}: j \in \mathcal A_t}}.
+\]
+The five-class label is
+\[
+y_{i,t}
+=
+\begin{cases}
+-2, & r_{i,t+1}\le q_{20,t+1},\\
+-1, & q_{20,t+1}<r_{i,t+1}\le q_{40,t+1},\\
+0, & q_{40,t+1}<r_{i,t+1}\le q_{60,t+1},\\
+1, & q_{60,t+1}<r_{i,t+1}\le q_{80,t+1},\\
+2, & r_{i,t+1}> q_{80,t+1}.
+\end{cases}
+\]
+
+\subsection{Raw data}
+Raw data \[\rho_{i,t} = \begin{pmatrix}
+    \tx{siccd}\\
+    \tx{prc}\\
+    \tx{ret}\\
+    \tx{retx}\\
+    \tx{vol}\\
+    \tx{mktcap}\\
+    \tx{open}\\
+    \tx{high}\\
+    \tx{low}\\
+    \tx{close}\\
+    \tx{delist\_flag}
+\end{pmatrix},\] where \((i,t) = (\tx{permno, date}) \in \mathcal A_t \x \mathcal T\) is the unique identifier.
+
+\subsection{Cellular structure}
+The $0$-cells are assets \[K^\pa{0}_t = \st{i\in \mathcal A_t}.\]
+
+There are five types of $1$-cell:  correlation,
+      lead-lag,
+     sector,
+     supply-chain,
+    market-exposure.
+
+\subsubsection{Correlation 1-cell}
+The 120-day rolling return correlation is
+\[
+    \rho_{ij,t}^{120}
+    =
+    \operatorname{Corr}\pa{r_{i,t-120:t-1}, r_{j,t-120:t-1}}.
+\]
+
+Let $N_k(i,t)$ be the assets with the largest $k$ values of $|\rho_{ij,t}^{120}|$. 
+
+The correlation adjacency is
+\[
+    A_{ij,t}^{\mathrm{corr}}
+    =
+    \begin{cases}
+        \1\{j \in N_k(i,t) \text{ or } i \in N_k(j,t)\},& \rho_{ij,t}>0\\
+        -\1\{j \in N_k(i,t) \text{ or } i \in N_k(j,t)\},& \rho_{ij,t}<0
+    \end{cases}.
+\]
+
+\subsubsection{Lead-lag 1-cell}
+The 120-day 5-lagged correlation is
+\[
+    \lambda_{i\to j,t}^{120,5}
+    =
+    \operatorname{Corr}\pa{r_{i,t-125:t-6}, r_{j,t-120:t-1}}.
+\]
+
+Let $N_k^{\mathrm{lead}}(i,t)$ be the assets $j$ with the largest $k$ values of $|\lambda_{i\to j,t}^{120,5}|$. 
+
+The lead-lag adjacency is
+\[
+    A_{ij,t}^{\mathrm{lead}}
+    =
+    \1\{j \in N_k^{\mathrm{lead}}(i,t)\}.
+\]
+\subsubsection{Sector-industry 1-cell}
+The sector adjacency is
+\[
+    A_{ij}^{\mathrm{sector}}
+    =
+    \1\{\text{sector}_i = \text{sector}_j\}.
+\]
+
+\[
+    A_{ij}^{\mathrm{industry}}
+    =
+    \1\{\text{industry}_i = \text{industry}_j\}.
+\]
+
+\subsubsection{Supply-chain 1-cell}
+
+The supply-chain adjacency is
+\[
+    A_{i\to j,t}^{\mathrm{sup}}
+    =
+    \1\{i \text{ supplies } j \text{ as of } t\}.
+\]
+
+\subsubsection{Market-exposure 1-cell}
+
+Define market-exposure similarity by
+\[
+    \phi_{ij,t}
+    =
+    \frac{\beta_{i,t}^{\top}\beta_{j,t}}{\|\beta_{i,t}\|\,\|\beta_{j,t}\|},
+\]
+
+where $\beta$ is the market exposure. Let $N_k^{\mathrm{beta}}(i,t)$ be the assets $j$ with the largest $k$ values of $\phi_{ij,t}$. 
+
+The market-exposure adjacency is
+\[
+    A_{ij,t}^{\mathrm{beta}}
+    =
+    \1\{j \in N_k^{\mathrm{beta}}(i,t) \text{ or } i \in N_k^{\mathrm{beta}}(j,t)\}.
+\]
+
+
+
+\subsubsection{Comments on 1-cell}
+
+\paragraph{Random 1-cell versus Configured 1-cell}
+
+For each of the five constructed 1-cell, we will use the same number random 1-cell to detect whether our inductive bias capture signals.
+
+\paragraph{Top-$k$ versus $\tau$-Threshold Sensitivity}
+For every top-$k$ 1-cell construction, we evaluate
+\[
+    k \in \{3,5,10,20\}.
+\]
+Alternatively, we can construct $\tau$-threshold 1-cell. We evaluate \[\tau \in \st{0.2,0.4,0.6,0.8},\] where 1-cell is constructed via \[|\rho_{ij,t}^{120}|\ge \tau_{\mathrm{corr}},\quad|\lambda_{i\to j,t}^{120,5}|\ge \tau_{\mathrm{lead}},\quad\phi_{ij,t}\ge \tau_{\mathrm{beta}}.\]
+
+If Rank IC, Sharpe ratio, transaction-cost-adjusted return (net return), cumulative net return are  sensitive in $k$ or $\tau$, this indicates that the 1-cell construction is unstable and should be reformulated. 
+
+
+
+
+\subsection{Features and standarization}
+The 0-cochain  is
+
+\[x_{i,t} = \begin{pmatrix}
+    r_{i,t-1}& \bar r_{i,t-6:t-2}&\bar r_{i,t-20:t-7}\\
+    \mom_{i,t-1}^{20}& \vol_{i,t-1}^{20}& \operatorname{dollar\_volume}_{i,t}^{20}\\
+    \turnover_{i,t}^{20}&\beta_{i,t-1}^{60}&\sector_i
+\end{pmatrix},\] where 
+
+\[
+\tx{momentum}_{i,t}^{20} = \prod_{s= t-20}^{t-1} (1+ r_{i,s}) -1,
+\]
+
+\[\tx{volatility}_{i,t}^{20} =\tx{Std}\pa{r_{i,t-20},..., r_{i,t-1}},\]
+
+\[\tx{turnover}_{i,t}^{20} = \frac{1}{20} \sum_{s=t-20}^{t-1}\frac{\tx{dollar\_volume}_{i,s}}{\tx{market\_capital}_{i,s}}=\frac{1}{20} \sum_{s=t-20}^{t-1}\frac{\tx{volume}_{i,s}}{\tx{share\_outstanding}_{i,s}},\] 
+
+\[\beta_{i,t}^{60} = \frac{\tx{cov}\pa{r_{i,t-60:t-1}, r_{m,t-60:t-1}}}{\tx{var}\pa{r_{m,t-60:t-1}}}.\]
+
+
+
+
+
+Let use $\cdot \mapsto z\pa{\cdot}$ to denote cross-sectional $z$-score, and $\cdot \mapsto \omega\pa{\cdot}$ to denote winsorize, where threshold is given by \[\omega_f(x^\pa{f}_{i,t}) = \min\st{\max\pa{x_{i,t}^\pa{f},q_{0.01,f}},q_{0.99,f}},\] where $f$ is the placehold for feature. 
+
+\paragraph{return, momentum, beta}  $z\pa{\omega\pa{x}}$
+
+\paragraph{volatility} $z\pa{\omega\pa{\log\pa{x+\varepsilon}}}$
+
+\paragraph{dollar-volume} $z\pa{\omega\pa{\log\pa{1+x}}}$
+
+\paragraph{sector} one-hot encoding $e_{s\pa{i}}$, and learned embedding $E_{s\pa{i},:}.$
+
+
+Standarized 0-cochain
+
+\[\tilde x_{i,t} = \begin{pmatrix}
+    \tilde r_{i,t-1}\\
+    \widetilde{\bar{r}}_{i,t-6:t-2}\\
+    \widetilde{\bar{r}}_{i,t-20:t-7}\\
+    \widetilde{\operatorname{momentum}}^{20}_{i,t-1}\\ 
+    \widetilde{\operatorname{volatility}}^{20}_{i,t-1}\\ 
+    \widetilde{\operatorname{log\_dollar\_volume}}^{20}_{i,t-1}\\
+    \widetilde{\operatorname{log\_turnover}}^{20}_{i,t-1}\\
+    \tilde \beta^{60}_{i,t-1}
+\end{pmatrix}\oplus e_{s(i)}\oplus E_{s(i)}.\]
+
+
+
+
+\subsection{Temporal splitting}
+Rolling walk-forward split:
+\[
+    \text{train 8 years} \to \text{validate 1 year} \to \text{test 1 year},
+\]
+then roll the window forward by one year. We have total 17 folds. 
+
+\section{Data-processing procedures}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Step} & \textbf{Input} & \textbf{Output} \\
+\midrule
+Download
+    & CRSP-API 
+    & raw data = (permno, date, prc, vol, ret, mkcap, OHLC, ..., mkret)\\
+Canonicalize
+    & raw data
+    & $\rho_{i,t},$  $(i,t)$ is the unique sorted permno-date key\\
+Rank top500 
+    & $\rho_{i,t}$
+    & $\mathcal A_t = \argmax_{i_1\ge...\ge i_{500}}\st{\overline{\tx{dollar\_volume}}_{i,t}^\pa{21}}$\\
+Feature-label
+    & $\mathcal A_t$
+    & $x_{i,t}, y_{i,t}$ \\
+Standardization
+    & $X_t$
+    & $\tilde X_t$\\
+top-$k$, $\tau$-threshold 1-cell
+    & $\tilde X_t$
+    & $K^\pa{1}_t =\st{ A_t^\tx{type}\mid\tx{type=$\cdots$}}$\\
+Chronological split
+    & $K_t, \tilde X_t, y_{i,t}$
+    & train-val-test folds $\mathcal{D}^\pa{k}$\\
+Ready-for-use
+    & $\mathcal{D}^\pa{k}$
+    & $\pa{\pa{\tilde X_t,K_t}, y_{i,t}}^\pa{k}_{8,1,1}$ \\
+\bottomrule
+\end{tabular}
+\smallskip\\
+Table 2: Data-processing pipeline.
+\end{center}
+
+
+
+\section{Models and Optimization Objective}
+
+\subsection{model hierarchy}
+The model hierarchy follows
+\[
+    \text{Logistic} \to \text{MLP} \to \text{GCN}.
+\]
+
+The output of model has three layers:
+
+\[z(x)= f_\theta(x) = \pa{z_1,...,z_5} \in \mathbb R^5,\]
+
+\[\hat p(x) = \softmax\pa{z(x)} = \pa{\frac{\exp\pa{z_1}}{\exp\pa{z_1}+\cdots + \exp\pa{z_5}},\cdots, \frac{\exp\pa{z_5}}{\exp\pa{z_1}+\cdots+\exp\pa{z_5}}},\]
+
+\[\hat y =\argmax_{c\in \st{-2,...,2}} \hat p^\pa{c}(x).\]
+\paragraph{Logistic}
+
+Model family \[z = Wh+b,\quad \hat p = \softmax\pa{z}.\]
+
+\paragraph{MLP}
+
+Model family \[f_\theta (h) =  A^\pa{L} \circ \cdots \circ \sigma \circ A^\pa{1}(h),\] where \[A^\pa{l}\pa{h} = W^\pa{l}h +b ^\pa{l},\quad \theta = \pa{ W^\pa{l},b^\pa{l}\mid 1\le l\le L}.\]
+
+ 
+
+\paragraph{GCN}
+
+A layer is 
+
+\[H^\pa{ l +1} = \sigma\pa{\hat AH^\pa{l}W^\pa{l}},\] where \[\hat A = \tilde{ D}^{-\frac12}\tilde A \tilde D^{-\frac12},\] 
+\[\tilde A = A + I,\] \[\tilde D =\deg \tilde A ,\] \[H^\pa{0} = X_t = (x_{i,t})_{i\in \mathcal A_t},\]  and \(W^\pa{l}\)'s are the parameters to be optimized.
+
+\subsection{Cross-entropy optimization objective}
+The pointwise categorical cross-entropy loss is \[\ell (\hat y_{i,t},y_{i,t}) = -\log \pa{ \hat p_{i,t}^\pa{y_{i,t}}}.\]
+
+The empirical risk is \[\hat R (\theta)= \frac{1}{T} \sum_{t\in \mathcal T}\frac{1}{|A_t|} \sum_{i\in \mathcal A_t}\ell_{i,t}\pa{\theta}.\]
+
+The cost may contain a penalty term \[J(\theta) = \hat R(\theta) + \lambda \Omega(\theta).\]
+
+\section{Portfolio}
+
+\subsection{Ranking score}
+
+For ranking and portfolio construction, predicted class probabilities are converted into a scalar score:
+\[
+    \hat{s}_{i,t}
+    =
+    \sum_{c=-2}^{2} c\hat p_{i,t}^\pa{c}.
+\]
+This score is the model\_implied expected class value. Classification loss trains the model, while the continuous score is used for Rank IC, Pearson IC, and portfolio ranking. This makes the pipeline consistent from classification to trading evaluation.
+
+\subsection{Long-short portfolio}
+
+At each $t,$ assets are ranked by the scalar score $\hat s_{i,t}.$ Let $L_t$ be the top $20$-quantile of $\mathcal A_t,$ and $S_t$ be the bottom $20$-quantile assets. The portfolio is equal-weighted, dollar-neutral, and rebalanced daily:
+
+\[w_{i,t} = \begin{cases}
+    \frac{1}{2|L_t|},& i \in L_t\\
+   -\frac{1}{2|S_t|},& i \in S_t\\
+    0,& \tx{o.w.}
+\end{cases}.\]
+
+The 1-horizon portfolio return is \[R_{t+1} = \sum_{i\in \mathcal A_t} w_{i,t} r_{i,t+1}.\]
+
+The net return is \[\pi _{t+1} = R_{t+1} - \kappa \sum_{i\in \mathcal A_t\cup \mathcal A_{t-1}} |w_{i,t}-w_{i,t-1}|,\] where $\kappa$ is the one-way transaction cost per dollar traded.
+
+
+\section{Report}
+
+
+\subsection{Ablation}
+
+To evaluate whether additional model structure improves out-of-sample alpha prediction, the experiment uses the ablation table below. Each model keeps the same prediction target and chronological evaluation protocol, but changes the representation layer or cross-asset structure available to the model.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{Model} & \textbf{Input} & \textbf{1-cell Structure} \\
+\midrule
+M0 Logistic
+    & 0-cochain 
+    & None \\
+M0-Plus XGboost& 0-cochain & None\\
+M1 MLP
+    & 0-cochain 
+    & None \\
+M2-A GCN-Corr
+    & 0-cochain 
+    & Correlation  \\
+M2-B GCN-LeadLag
+    & 0-cochain 
+    & Lead-lag  \\
+M2-C GCN-Sector
+    & 0-cochain 
+    & Sector  \\
+M2-D GCN-SupplyChain
+    & 0-cochain 
+    & Supply-chain\\
+M2-E GCN-Beta
+    & 0-cochain 
+    & Market exposure\\
+M2-0 GCN-Random
+    & 0-cochain 
+    & Random  control \\
+M2-Pro Multi-Rel GCN
+    & 0,1-cochain
+    & Multi-relation  \\
+M3 Sheaf GCN
+    & 0,1-cochain, restriction map
+    & Multi-relation consistency\\
+\bottomrule
+\end{tabular}
+\smallskip\\
+Table 2: Ablation design for the model hierarchy.
+\end{center}
+
+
+\subsection{Evaluation}
+
+Metrics are reported separately on validation and test periods for each model in the ablation table. The primary metrics are Rank IC, Sharpe ratio, net return, and cumulative net return. The secondary metrics are Pearson IC, classification accuracy, turnover, and maximum drawdown.
+
+
+\paragraph{Primary metrics}
+Rank IC is
+\[
+    \operatorname{RankIC}_t
+    =
+    \operatorname{SpearmanCorr}
+    \left(
+        \{\hat{s}_{i,t}\}_{i \in \mathcal A_t},
+        \{r_{i,t+1}\}_{i \in \mathcal A_t}
+    \right).
+\]
+The Rank IC reported in the tables is its time\_series average, \[\overline{\operatorname{RankIC}} = \frac{1}{T} \sum_{t\in \mathcal T} \operatorname{RankIC}_t.\]
+Rank IC is the main prediction metric because it evaluates whether the score correctly orders assets in the 1\_horizon cross\_asset,  without requiring a linear relationship between the scores and realized returns. 
+
+The annualized Sharpe ratio is
+\[
+    \operatorname{Sharpe}
+    =
+    \sqrt{252}\,
+    \frac{\operatorname{mean}(\pi)}{\operatorname{std}(\pi)}.
+\]
+
+The net return reported in the tables is the mean daily net return \[\bar \pi = \frac1T \sum_{t\in \mathcal T} \pi_{t+1},\] expressed in basis points per day.
+
+The cumulative net return at the end of the evaluation period is \[\mathrm{cumulative net return} = \prod_{t\in \mathcal T} \pa{1+\pi_{t+1}} -1.\]
+
+\paragraph{Secondary metrics}
+Pearson IC is
+\[
+    \operatorname{IC}_t
+    =
+    \operatorname{Corr}
+    \left(
+        \{\hat{s}_{i,t}\}_{i \in \mathcal A_t},
+        \{r_{i,t+1}\}_{i \in \mathcal A_t}
+    \right).
+\]
+
+The reported Pearson IC is its time\_series average, \[\overline{\operatorname{IC}} \frac1T\sum_{t\in \mathcal T} \operatorname{IC}_t.\]
+
+Multiclass classification accuracy is \[\operatorname{Acc}_t = \frac{1}{|\mathcal A_t|} \sum_{i\in \mathcal A_t} \1 \st{\hat y_{i,t} =y_{i,t}},\] and the reported accuracy is 
+
+\[\operatorname{Acc} = \frac1T\sum_{t\in \mathcal T} \operatorname{Acc}_t.\]
+
+Turnover is
+\[
+    \operatorname{TO}_t
+    =
+    \sum_{i \in \mathcal A_t\cup A_{t-1}} |w_{i,t} - w_{i,t-1}|,
+\]
+
+and reported version is the mean daily turnover.
+
+To define maximum drawdown, let \[M_t = \max_{u\le t} W_u,\] where \[W_t = \prod_{s\le t}(1+\pi_{s}).\]
+
+Define the drawdown at $t$ is \[D_t = 1- \frac{W_t}{M_t},\] and the maximum drawdown on the evaluation period is \[\operatorname{MDD} = \max_t D_t = \max_t\pa{1- \frac{W_t}{\max_{s\le t}W_s}}.\]
+
+
+
+\section{Execution}
+
+\begin{enumerate}[label=\arabic*.]
+    \item Follow data-processing procedures.
+    \item Fit each candidate model on the training period.
+    \item Using only the validation period, select all model hyperparameters, the early-stopping epoch, and the graph-construction rule with its corresponding parameter $k$ or $\tau$.
+    \item Fix the selected hyperparameters, reinitialize and retrain the selected model on the union of the training and validation periods.
+    \item Generate and store test-period predicted probabilities.
+    \item Stitch the non-overlapping test-period predicted probabilities.
+    \item Convert the probabilities to ranking scores and daily long-short portfolios.
+    \item Evaluate prediction metrics: rankIC, IC, accuracy.
+    \item Evaluate portfolio metrics: Sharpe, net return, turnover, maximum drawdown, cumulative net return.
+    \item Draw overall OOS cumulative wealth curve labeled fold boundaries, fold-level Sharpe, rankIC, MDD versus time diagram, fold-level cumulative net return contribution bar chart.
+    \item Run ablations, then report whether gains justify added complexity: parameter count, training time, inference time, GPU memory, where gains consist of \[\Delta \tx{rankIC} = \tx{rankIC}_{\tx{model}} - \tx{rankIC}_{\tx{baseline}},\] \[\Delta \tx{Sharpe} = \tx{Sharpe}_{\tx{model}} - \tx{Sharpe}_{\tx{baseline}},\] \[\Delta \bar \pi = \bar \pi_{\tx{model}} - \bar \pi_{\tx{baseline}},\] \[\Delta \tx{MDD} = \tx{MDD}_{\tx{baseline}} - \tx{MDD}_{\tx{model}}.\]
+\end{enumerate}
+\end{document}

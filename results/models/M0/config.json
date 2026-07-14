@@ -1,0 +1,64 @@
+{
+  "model": "M0",
+  "model_family": "multinomial_logistic",
+  "seed": 1729,
+  "numeric_feature_count": 8,
+  "sector_category_count": 690,
+  "class_count": 5,
+  "optimizer": "adam",
+  "selection_metric": "validation_daily_mean_cross_entropy",
+  "max_epochs": 100,
+  "patience": 15,
+  "min_delta": 1e-06,
+  "batch_dates": 64,
+  "adam_beta1": 0.9,
+  "adam_beta2": 0.999,
+  "adam_epsilon": 1e-08,
+  "candidates": [
+    {
+      "id": "lr0p001_l2_0",
+      "learning_rate": 0.001,
+      "l2": 0.0
+    },
+    {
+      "id": "lr0p001_l2_1em4",
+      "learning_rate": 0.001,
+      "l2": 0.0001
+    },
+    {
+      "id": "lr0p001_l2_1em3",
+      "learning_rate": 0.001,
+      "l2": 0.001
+    },
+    {
+      "id": "lr0p003_l2_0",
+      "learning_rate": 0.003,
+      "l2": 0.0
+    },
+    {
+      "id": "lr0p003_l2_1em4",
+      "learning_rate": 0.003,
+      "l2": 0.0001
+    },
+    {
+      "id": "lr0p003_l2_1em3",
+      "learning_rate": 0.003,
+      "l2": 0.001
+    },
+    {
+      "id": "lr0p01_l2_0",
+      "learning_rate": 0.01,
+      "l2": 0.0
+    },
+    {
+      "id": "lr0p01_l2_1em4",
+      "learning_rate": 0.01,
+      "l2": 0.0001
+    },
+    {
+      "id": "lr0p01_l2_1em3",
+      "learning_rate": 0.01,
+      "l2": 0.001
+    }
+  ]
+}
